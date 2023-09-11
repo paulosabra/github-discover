@@ -16,9 +16,7 @@ final class SearchRepositoriesInitial extends SearchRepositoriesState {
 }
 
 final class SearchRepositoriesLoadingState extends SearchRepositoriesState {
-  const SearchRepositoriesLoadingState({
-    required super.repository,
-  });
+  const SearchRepositoriesLoadingState({required super.repository});
 }
 
 final class SearchRepositoriesSucessState extends SearchRepositoriesState {
@@ -37,10 +35,7 @@ final class SearchRepositoriesErrorState extends SearchRepositoriesState {
 }
 
 final class SearchRepositoriesEmptyState extends SearchRepositoriesState {
-  final String? emptyMessage;
-
   const SearchRepositoriesEmptyState({
-    this.emptyMessage,
     required super.repository,
   });
 }

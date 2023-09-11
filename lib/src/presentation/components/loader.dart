@@ -11,19 +11,24 @@ class CustomLoader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Platform.isIOS || Platform.isMacOS
-          ? CupertinoActivityIndicator(
-              color: context.colors.kAccentColor,
-              radius: Spacing.s48,
-            )
-          : SizedBox.square(
-              dimension: Spacing.s48,
-              child: CircularProgressIndicator(
-                color: context.colors.kAccentColor,
-                strokeWidth: Spacing.s4,
-              ),
-            ),
-    );
+    try {
+      return Center(
+          child: Platform.isIOS || Platform.isMacOS
+              ? CupertinoActivityIndicator(
+                  color: context.colors.kAccentColor,
+                  radius: Spacing.s48,
+                )
+              : null);
+    } catch (e) {
+      return Center(
+        child: SizedBox.square(
+          dimension: Spacing.s48,
+          child: CircularProgressIndicator(
+            color: context.colors.kAccentColor,
+            strokeWidth: Spacing.s4,
+          ),
+        ),
+      );
+    }
   }
 }

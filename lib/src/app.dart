@@ -3,7 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:github_discover/src/config/routes.dart';
 import 'package:github_discover/src/presentation/blocs/profile/profile_bloc.dart';
-import 'package:github_discover/src/presentation/blocs/repositories/search_repositories_bloc.dart';
+import 'package:github_discover/src/presentation/blocs/repositories/detail/detail_repositories_bloc.dart';
+import 'package:github_discover/src/presentation/blocs/repositories/search/search_repositories_bloc.dart';
 import 'package:github_discover/src/utils/extensions/build_context_extensions.dart';
 
 class GitHubDiscoverApp extends StatelessWidget {
@@ -18,6 +19,9 @@ class GitHubDiscoverApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => SearchRepositoriesBloc(),
+        ),
+        BlocProvider(
+          create: (context) => DetailRepositoriesBloc(),
         ),
       ],
       child: MaterialApp.router(

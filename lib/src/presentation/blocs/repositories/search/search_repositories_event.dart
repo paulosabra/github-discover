@@ -7,10 +7,10 @@ sealed class SearchRepositoriesEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class SearchRepositoryEvent extends SearchRepositoriesEvent {
+class RepositorySearchEvent extends SearchRepositoriesEvent {
   final String searchString;
 
-  const SearchRepositoryEvent({
+  const RepositorySearchEvent({
     required this.searchString,
   });
 }
