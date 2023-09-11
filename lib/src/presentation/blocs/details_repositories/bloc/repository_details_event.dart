@@ -7,6 +7,6 @@ sealed class RepositoryDetailsEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class RepositotryDetailsInitalEvent extends RepositoryDetailsEvent {}
+class RepositoryDetailsInitalEvent extends RepositoryDetailsEvent {}
 
 class RepositoryDetailsLoadingEvent extends RepositoryDetailsEvent {}

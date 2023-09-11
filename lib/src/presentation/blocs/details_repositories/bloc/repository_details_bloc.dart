@@ -8,13 +8,22 @@ part 'repository_details_state.dart';
 
 class RepositoryDetailsBloc extends Bloc<RepositoryDetailsEvent, RepositoryDetailsState> {
   RepositoryDetailsBloc() : super(RepositoryDetailsInitialState()) {
-    on<RepositotryDetailsInitalEvent>(_onRepositoryDetailsInitalEvent);
+    on<RepositoryDetailsInitalEvent>(_onRepositoryDetailsInitalEvent);
+    on<RepositoryDetailsLoadingEvent>(_onRepositoryLoadingDetailsInitalEvent);
   }
 }
 
-
  void _onRepositoryDetailsInitalEvent(
-    RepositotryDetailsInitalEvent event,
+    RepositoryDetailsInitalEvent event,
+    Emitter emit,
+  ) async {
+    emit(const RepositoryDetailsSuccessState(
+      repository: kRepositoryMock,
+    ));
+  }
+
+   void _onRepositoryLoadingDetailsInitalEvent(
+    RepositoryDetailsLoadingEvent event,
     Emitter emit,
   ) async {
     emit(const RepositoryDetailsSuccessState(
