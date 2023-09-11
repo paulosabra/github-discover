@@ -10,8 +10,7 @@ class RepositoryDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
    return BlocBuilder<RepositoryDetailsBloc, RepositoryDetailsState>(
       builder: (context, state) {   
-
-        
+ 
         return const RepositoryDetailsPage(
         );
       },

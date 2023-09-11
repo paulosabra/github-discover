@@ -9,31 +9,22 @@ part 'users_event.dart';
 part 'users_state.dart';
 
 class UsersBloc extends Bloc<UsersEvent, UsersState> {
- UsersBloc() : super(UsersInitial()) {
+  UsersBloc() : super(UsersInitial()) {
     on<UsersInitialEvent>(_onUsersInitialEvent);
-   on<UsersLoadingEvent>(_onUsersLoadingEvent);
+    on<UsersLoadingEvent>(_onUsersLoadingEvent);
   }
 }
 
-
 void _onUsersInitialEvent(
-    UsersInitialEvent event,
-    Emitter emit,
-  ) async {
-    emit(const UsersSuccessState(
-      repository: kRepositoryMock, 
-      user: kUserMock
-    ));
-  }
+  UsersInitialEvent event,
+  Emitter emit,
+) async {
+  emit(const UsersSuccessState(repository: kRepositoryMock, user: kUserMock));
+}
 
-  
 void _onUsersLoadingEvent(
-    UsersLoadingEvent event,
-    Emitter emit,
-  ) async {
-    emit(const UsersSuccessState(
-      repository: kRepositoryMock, 
-      user: kUserMock
-    ));
-  }
-
+  UsersLoadingEvent event,
+  Emitter emit,
+) async {
+  emit(const UsersSuccessState(repository: kRepositoryMock, user: kUserMock));
+}

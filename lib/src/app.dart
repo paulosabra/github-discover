@@ -6,6 +6,7 @@ import 'package:github_discover/src/presentation/blocs/details_repositories/bloc
 import 'package:github_discover/src/presentation/blocs/profile/profile_bloc.dart';
 import 'package:github_discover/src/presentation/blocs/repository/bloc/repository_bloc.dart';
 import 'package:github_discover/src/presentation/blocs/users/bloc/users_bloc.dart';
+import 'package:github_discover/src/presentation/blocs/users_details/bloc/users_details_bloc.dart';
 import 'package:github_discover/src/utils/extensions/build_context_extensions.dart';
 
 class GitHubDiscoverApp extends StatelessWidget {
@@ -27,9 +28,9 @@ class GitHubDiscoverApp extends StatelessWidget {
          BlocProvider(
           create: (context) => UsersBloc()..add(UsersInitialEvent()),
         ),
-        // BlocProvider(
-        //   create: (context) => UsersBloc()..add(UsersInitialEvent()),
-        // ),
+        BlocProvider(
+          create: (context) => UsersDetailsBloc()..add(UsersDetailsInitalEvent()),
+        ),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
