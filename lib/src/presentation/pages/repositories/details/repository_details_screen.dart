@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:github_discover/src/constants/mock/repository_mock.dart';
-import 'package:github_discover/src/presentation/blocs/repository_details/bloc/repository_details_bloc.dart';
+import 'package:github_discover/src/presentation/blocs/repository_details/repository_details_bloc.dart';
 import 'package:github_discover/src/presentation/components/loader.dart';
 import 'package:github_discover/src/presentation/pages/repositories/details/repository_details_page.dart';
 

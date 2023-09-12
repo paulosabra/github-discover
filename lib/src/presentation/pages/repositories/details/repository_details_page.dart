@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:github_discover/src/constants/mock/repository_mock.dart';
 import 'package:github_discover/src/constants/spacings.dart';
 import 'package:github_discover/src/domain/entities/repository.dart';
 import 'package:github_discover/src/presentation/components/app_bar.dart';

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:github_discover/src/config/routes.dart';
-import 'package:github_discover/src/constants/mock/user_mock.dart';
 import 'package:github_discover/src/constants/spacings.dart';
 import 'package:github_discover/src/constants/theme.dart';
 import 'package:github_discover/src/constants/typographies.dart';
+import 'package:github_discover/src/domain/entities/user.dart';
 import 'package:github_discover/src/presentation/components/app_bar.dart';
 import 'package:github_discover/src/presentation/components/app_bar_bottom.dart';
 import 'package:github_discover/src/presentation/components/text.dart';
@@ -13,14 +13,25 @@ import 'package:github_discover/src/utils/extensions/theme_data_extensions.dart'
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
-class UsersSearchPage extends StatefulWidget {
-  const UsersSearchPage({super.key});
-
+class UserSearchPage extends StatefulWidget {
+  final User? user;
+  final void Function(String?)? onClickUserSearchEvent;
+  final void Function(bool?)? onUserLoading;
+  final int? quantityFound;
+  final String? message;
+  const UserSearchPage(
+      {super.key,
+      this.user,
+      this.onClickUserSearchEvent,
+      this.quantityFound,
+      this.message,
+      this.onUserLoading});
   @override
-  State<UsersSearchPage> createState() => _UsersSearchPageState();
+  State<UserSearchPage> createState() => _UserSearchPageState();
 }
 
-class _UsersSearchPageState extends State<UsersSearchPage> {
+class _UserSearchPageState extends State<UserSearchPage> {
+  String? searchTerm = '';
   var formatter = NumberFormat.compact(locale: locale);
 
   @override
@@ -29,8 +40,13 @@ class _UsersSearchPageState extends State<UsersSearchPage> {
       backgroundColor: context.colors.kBackgrounDefaultColor,
       appBar: CustomAppBar(
         bottom: CustomAppBarBottom(
-          onChanged: (search) {},
-          onPressed: () {},
+          onChanged: (search) {
+            searchTerm = search;
+            widget.onClickUserSearchEvent?.call(search);
+          },
+          onPressed: () {
+            widget.onClickUserSearchEvent?.call(searchTerm);
+          },
         ),
       ),
       extendBodyBehindAppBar: true,
@@ -45,10 +61,13 @@ class _UsersSearchPageState extends State<UsersSearchPage> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 CustomText(
-                  text: context.locales.resultHeader(formatter.format(3)),
+                  text: context.locales
+                      .resultHeader(formatter.format(widget.quantityFound)),
                   textAlign: TextAlign.start,
                   style: TypographyType.header,
                 ),
+                CustomText(
+                    text: widget.message ?? '', style: TypographyType.title),
                 const SizedBox(height: Spacing.s32),
                 SizedBox(
                   width: double.infinity,
@@ -63,19 +82,19 @@ class _UsersSearchPageState extends State<UsersSearchPage> {
                     physics: const ClampingScrollPhysics(),
                     scrollDirection: Axis.horizontal,
                     shrinkWrap: true,
-                    itemCount: 20,
+                    itemCount: widget.user != null ? 1 : 0,
                     itemBuilder: (context, index) {
+                      final result = widget.user!;
                       return Flexible(
-                        child: UserListTile(
-                          user: kUserMock,
-                          onTap: () {
-                            context.goNamed(AppRoute.userDetails.name);
-                          },
-                        ),
-                      );
+                          child: UserListTile(
+                        user: result,
+                        onTap: () {
+                          context.goNamed(AppRoute.userDetails.name);
+                        },
+                      ));
                     },
                   ),
-                ),
+                )
               ],
             ),
           ),

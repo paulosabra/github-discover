@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:github_discover/src/config/routes.dart';
 import 'package:github_discover/src/constants/mock/repository_mock.dart';
 import 'package:github_discover/src/constants/mock/user_mock.dart';
 import 'package:github_discover/src/constants/spacings.dart';
@@ -9,6 +10,8 @@ import 'package:github_discover/src/presentation/pages/users/widgets/repository_
 import 'package:github_discover/src/presentation/pages/users/widgets/user_card.dart';
 import 'package:github_discover/src/utils/extensions/build_context_extensions.dart';
 import 'package:github_discover/src/utils/extensions/theme_data_extensions.dart';
+import 'package:go_router/go_router.dart';
+
 
 class UserDetailsPage extends StatelessWidget {
   const UserDetailsPage({
@@ -24,6 +27,9 @@ class UserDetailsPage extends StatelessWidget {
       appBar: CustomAppBar(
         text: user.name?.toUpperCase(),
         hasBackButton: true,
+        backButtonPressed: () {
+          context.goNamed(AppRoute.usersSearch.name);
+        },
       ),
       extendBodyBehindAppBar: true,
       body: SafeArea(

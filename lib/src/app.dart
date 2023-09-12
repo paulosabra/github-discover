@@ -3,14 +3,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:github_discover/src/config/routes.dart';
 import 'package:github_discover/src/presentation/blocs/profile/profile_bloc.dart';
-import 'package:github_discover/src/presentation/blocs/repository_details/bloc/repository_details_bloc.dart';
+import 'package:github_discover/src/presentation/blocs/repository_details/repository_details_bloc.dart';
 import 'package:github_discover/src/presentation/blocs/repository_search/repository_search_bloc.dart';
+import 'package:github_discover/src/presentation/blocs/user_search/user_search_bloc.dart';
 import 'package:github_discover/src/utils/extensions/build_context_extensions.dart';
 
 class GitHubDiscoverApp extends StatelessWidget {
   const GitHubDiscoverApp({super.key});
 
-  @override
+@override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
@@ -21,8 +22,11 @@ class GitHubDiscoverApp extends StatelessWidget {
             create: (context) =>
                 RepositorySearchBloc()..add(RepositorySearchInitialEvent())),
         BlocProvider(
-            create: (context) => RepositoryDetailsBloc()
-              ..add(RepositoryDetailsInitialEvent()))
+            create: (context) =>
+                RepositoryDetailsBloc()..add(RepositoryDetailsInitialEvent())),
+        BlocProvider(
+            create: (context) =>
+                UserSearchBloc()..add(UserSearchInitialEvent())),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,

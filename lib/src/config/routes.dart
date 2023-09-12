@@ -4,7 +4,7 @@ import 'package:github_discover/src/presentation/pages/profile/profile/profile_s
 import 'package:github_discover/src/presentation/pages/repositories/details/repository_details_screen.dart';
 import 'package:github_discover/src/presentation/pages/repositories/search/repository_search_screen.dart';
 import 'package:github_discover/src/presentation/pages/users/details/user_details_page.dart';
-import 'package:github_discover/src/presentation/pages/users/search/users_search_page.dart';
+import 'package:github_discover/src/presentation/pages/users/search/user_search_screen.dart';
 import 'package:go_router/go_router.dart';
 
 enum AppRoute {
@@ -54,7 +54,7 @@ final router = GoRouter(
         GoRoute(
           path: 'users',
           name: AppRoute.usersSearch.name,
-          builder: (context, state) => const UsersSearchPage(),
+          builder: (context, state) => const UserSearchScreen(),
           routes: [
             GoRoute(
               path: 'id',
