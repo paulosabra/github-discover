@@ -2,7 +2,7 @@ import 'package:github_discover/src/presentation/pages/home/home_page.dart';
 import 'package:github_discover/src/presentation/pages/profile/add_skill/add_skill_page.dart';
 import 'package:github_discover/src/presentation/pages/profile/profile/profile_screen.dart';
 import 'package:github_discover/src/presentation/pages/repositories/details/repository_details_page.dart';
-import 'package:github_discover/src/presentation/pages/repositories/search/repositories_search_page.dart';
+import 'package:github_discover/src/presentation/pages/repositories/search/repository_search_page.dart';
 import 'package:github_discover/src/presentation/pages/users/details/user_details_page.dart';
 import 'package:github_discover/src/presentation/pages/users/search/users_search_page.dart';
 import 'package:go_router/go_router.dart';

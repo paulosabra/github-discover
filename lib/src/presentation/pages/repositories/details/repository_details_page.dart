@@ -6,6 +6,8 @@ import 'package:github_discover/src/presentation/components/app_bar.dart';
 import 'package:github_discover/src/presentation/pages/repositories/widgets/repository_card.dart';
 import 'package:github_discover/src/utils/extensions/build_context_extensions.dart';
 import 'package:github_discover/src/utils/extensions/theme_data_extensions.dart';
+import 'package:go_router/go_router.dart';
+import '../../../../config/routes.dart';
 
 class RepositoryDetailsPage extends StatelessWidget {
   const RepositoryDetailsPage({super.key});
@@ -19,6 +21,9 @@ class RepositoryDetailsPage extends StatelessWidget {
       appBar: CustomAppBar(
         text: repository.name?.toUpperCase(),
         hasBackButton: true,
+        backButtonPressed: () {
+          context.goNamed(AppRoute.repositoriesSearch.name);
+        },
       ),
       extendBodyBehindAppBar: true,
       body: SafeArea(
