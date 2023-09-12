@@ -19,8 +19,9 @@ class CustomSearchInput extends StatefulWidget {
   final TextInputType? textInputType;
   final Function(String)? onSaved;
   final String? Function(String?)? validator;
+  final void Function(String)? onChanged;
 
-  const CustomSearchInput({
+  CustomSearchInput({
     super.key,
     this.helperText,
     this.errorText,
@@ -32,6 +33,7 @@ class CustomSearchInput extends StatefulWidget {
     this.textInputType,
     this.onSaved,
     this.validator,
+    this.onChanged,
   });
 
   @override
@@ -69,7 +71,8 @@ class _CustomSearchInputState extends State<CustomSearchInput> {
           textInputAction: widget.inputAction,
           inputFormatters: widget.inputFormatters,
           enabled: widget.enabled,
-          onChanged: (value) => data.formFieldState.didChange(value),
+          onChanged: widget.onChanged ??
+              (value) => data.formFieldState.didChange(value),
           style: typography[TypographyType.body]
               ?.copyWith(color: context.colors.kForegroundColor),
           decoration: data.inputDecoration.copyWith(
