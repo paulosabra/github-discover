@@ -9,12 +9,24 @@ import 'package:github_discover/src/utils/extensions/theme_data_extensions.dart'
 import 'package:go_router/go_router.dart';
 import '../../../../config/routes.dart';
 
-class RepositoryDetailsPage extends StatelessWidget {
-  const RepositoryDetailsPage({super.key});
+class RepositoryDetailsPage extends StatefulWidget {
+  final Repository? repository;
+  final String? message;
+  const RepositoryDetailsPage({
+    super.key,
+    this.repository,
+    this.message,
+  });
+
+  @override
+  State<RepositoryDetailsPage> createState() => _RepositoryDetailsPage();
+}
+
+class _RepositoryDetailsPage extends State<RepositoryDetailsPage> {
 
   @override
   Widget build(BuildContext context) {
-    Repository repository = kRepositoryMock;
+    Repository repository = widget.repository!;
 
     return Scaffold(
       backgroundColor: context.colors.kBackgrounDefaultColor,

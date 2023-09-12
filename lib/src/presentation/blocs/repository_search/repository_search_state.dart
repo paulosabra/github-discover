@@ -3,7 +3,10 @@ part of 'repository_search_bloc.dart';
 sealed class RepositorySearchState extends Equatable {
   final Repository? repository;
   final int? quantityFound;
-  const RepositorySearchState({this.repository, this.quantityFound});
+  const RepositorySearchState({
+    this.repository,
+    this.quantityFound,
+  });
 
   @override
   List<Object?> get props => [repository];

@@ -1,8 +1,8 @@
 import 'package:github_discover/src/presentation/pages/home/home_page.dart';
 import 'package:github_discover/src/presentation/pages/profile/add_skill/add_skill_page.dart';
 import 'package:github_discover/src/presentation/pages/profile/profile/profile_screen.dart';
-import 'package:github_discover/src/presentation/pages/repositories/details/repository_details_page.dart';
-import 'package:github_discover/src/presentation/pages/repositories/search/repository_search_page.dart';
+import 'package:github_discover/src/presentation/pages/repositories/details/repository_details_screen.dart';
+import 'package:github_discover/src/presentation/pages/repositories/search/repository_search_screen.dart';
 import 'package:github_discover/src/presentation/pages/users/details/user_details_page.dart';
 import 'package:github_discover/src/presentation/pages/users/search/users_search_page.dart';
 import 'package:go_router/go_router.dart';
@@ -41,12 +41,13 @@ final router = GoRouter(
         GoRoute(
           path: 'repositories',
           name: AppRoute.repositoriesSearch.name,
-          builder: (context, state) => const RepositoriesSearchPage(),
+          builder: (context, state) => const RepositorySearchScreen(),
           routes: [
             GoRoute(
               path: 'id',
               name: AppRoute.repositoryDetails.name,
-              builder: (context, state) => const RepositoryDetailsPage(),
+              builder: (context, state) =>
+                  const RepositoryDetailsScreen(),
             ),
           ],
         ),
