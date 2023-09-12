@@ -5,13 +5,14 @@ import 'package:github_discover/src/config/routes.dart';
 import 'package:github_discover/src/presentation/blocs/profile/profile_bloc.dart';
 import 'package:github_discover/src/presentation/blocs/repository_details/repository_details_bloc.dart';
 import 'package:github_discover/src/presentation/blocs/repository_search/repository_search_bloc.dart';
+import 'package:github_discover/src/presentation/blocs/user_details/user_details_bloc.dart';
 import 'package:github_discover/src/presentation/blocs/user_search/user_search_bloc.dart';
 import 'package:github_discover/src/utils/extensions/build_context_extensions.dart';
 
 class GitHubDiscoverApp extends StatelessWidget {
   const GitHubDiscoverApp({super.key});
 
-@override
+  @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
@@ -27,6 +28,9 @@ class GitHubDiscoverApp extends StatelessWidget {
         BlocProvider(
             create: (context) =>
                 UserSearchBloc()..add(UserSearchInitialEvent())),
+        BlocProvider(
+            create: (context) =>
+                UserDetailsBloc()..add(UserDetailsInitialEvent())),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,

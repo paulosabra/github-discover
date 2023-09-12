@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:github_discover/src/config/routes.dart';
 import 'package:github_discover/src/constants/mock/repository_mock.dart';
-import 'package:github_discover/src/constants/mock/user_mock.dart';
 import 'package:github_discover/src/constants/spacings.dart';
 import 'package:github_discover/src/domain/entities/user.dart';
 import 'package:github_discover/src/presentation/components/app_bar.dart';
@@ -13,14 +12,23 @@ import 'package:github_discover/src/utils/extensions/theme_data_extensions.dart'
 import 'package:go_router/go_router.dart';
 
 
-class UserDetailsPage extends StatelessWidget {
+class UserDetailsPage extends StatefulWidget  {
+  final User? user;
+  final String? message;
   const UserDetailsPage({
     super.key,
+    this.user,
+    this.message,
   });
 
+ @override
+  State<UserDetailsPage> createState() => _UserDetailsPage();
+}
+
+class _UserDetailsPage extends State<UserDetailsPage> {
   @override
   Widget build(BuildContext context) {
-    User user = kUserMock;
+    User user = widget.user!;
 
     return Scaffold(
       backgroundColor: context.colors.kBackgrounDefaultColor,
@@ -38,8 +46,8 @@ class UserDetailsPage extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(Spacing.s16),
             child: ResponsiveColumnLayout(
-              startContent: const UserCard(
-                user: kUserMock,
+              startContent: UserCard(
+                user: user,
               ),
               endContent: ListView.builder(
                 physics: const ClampingScrollPhysics(),

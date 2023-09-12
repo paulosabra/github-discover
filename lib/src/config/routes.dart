@@ -3,7 +3,7 @@ import 'package:github_discover/src/presentation/pages/profile/add_skill/add_ski
 import 'package:github_discover/src/presentation/pages/profile/profile/profile_screen.dart';
 import 'package:github_discover/src/presentation/pages/repositories/details/repository_details_screen.dart';
 import 'package:github_discover/src/presentation/pages/repositories/search/repository_search_screen.dart';
-import 'package:github_discover/src/presentation/pages/users/details/user_details_page.dart';
+import 'package:github_discover/src/presentation/pages/users/details/user_details_screen.dart';
 import 'package:github_discover/src/presentation/pages/users/search/user_search_screen.dart';
 import 'package:go_router/go_router.dart';
 
@@ -59,7 +59,7 @@ final router = GoRouter(
             GoRoute(
               path: 'id',
               name: AppRoute.userDetails.name,
-              builder: (context, state) => const UserDetailsPage(),
+              builder: (context, state) => const UserDetailsScreen(),
             ),
           ],
         ),
