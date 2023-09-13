@@ -13,8 +13,19 @@ import 'package:github_discover/src/utils/extensions/theme_data_extensions.dart'
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
-class RepositoriesSearchPage extends StatelessWidget {
-  const RepositoriesSearchPage({super.key});
+class RepositoriesSearchPage extends StatefulWidget {
+
+  const RepositoriesSearchPage({
+    super.key,
+   
+    });
+
+    @override
+  State<RepositoriesSearchPage> createState() => _RepoSearchScreenStateState();
+}
+class _RepoSearchScreenStateState extends State<RepositoriesSearchPage> {
+  late TextEditingController titleController;
+  late TextEditingController descriptionController;
 
   @override
   Widget build(BuildContext context) {

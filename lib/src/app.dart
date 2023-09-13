@@ -3,6 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:github_discover/src/config/routes.dart';
 import 'package:github_discover/src/presentation/blocs/profile/profile_bloc.dart';
+import 'package:github_discover/src/presentation/blocs/repositoryDetails/repo_details_bloc.dart';
+import 'package:github_discover/src/presentation/blocs/repositorySearch/repo_search_bloc.dart';
+import 'package:github_discover/src/presentation/blocs/userDetails/user_details_bloc.dart';
+import 'package:github_discover/src/presentation/blocs/user_search/user_search_bloc.dart';
 import 'package:github_discover/src/utils/extensions/build_context_extensions.dart';
 
 class GitHubDiscoverApp extends StatelessWidget {
@@ -15,6 +19,23 @@ class GitHubDiscoverApp extends StatelessWidget {
         BlocProvider(
           create: (context) => ProfileBloc()..add(ProfileInitalEvent()),
         ),
+        BlocProvider(
+          create: (context) => RepoDetailsBloc()..add(RepoDetailsInitalEvent()),
+        ),
+        BlocProvider(
+          create: (context) => RepoSearchBloc()..add(RepoSearchInitalEvent()),
+        ),
+        BlocProvider(
+          create: (context) => UserSearchBloc()..add(UserSearchInitalEvent()),
+        ),
+        BlocProvider(
+          create: (context) => UserDetailsBloc()..add(UserDetailsInitalEvent()),
+        ),
+
+
+
+
+
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
