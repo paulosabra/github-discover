@@ -26,3 +26,11 @@ class DetailsRepositoryErrorState extends DetailsRepositoryState {
     this.message,
   });
 }
+
+class DetailsRepositorySearchState extends DetailsRepositoryState {
+  final int? id;
+
+  const DetailsRepositorySearchState({
+    required this.id,
+  });
+}

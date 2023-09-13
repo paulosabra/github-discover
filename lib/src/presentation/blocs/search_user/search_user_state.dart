@@ -1,10 +1,10 @@
 part of 'search_user_bloc.dart';
 
 sealed class SearchUserState extends Equatable {
-  final Profile? profile;
+  final User? user;
 
   const SearchUserState({
-    this.profile,
+    this.user,
   });
   
   @override
@@ -15,7 +15,7 @@ final class SearchUserInitial extends SearchUserState {}
 
 class SearchUserSuccessState extends SearchUserState {
   const SearchUserSuccessState({
-    required super.profile,
+    required super.user,
   });
 }
 
@@ -24,5 +24,13 @@ class SearchUserErrorState extends SearchUserState {
 
   const SearchUserErrorState({
     this.message,
+  });
+}
+
+class SearchUserEmptyState extends SearchUserState {
+  final String? message;
+
+  const SearchUserEmptyState({
+    this.message
   });
 }

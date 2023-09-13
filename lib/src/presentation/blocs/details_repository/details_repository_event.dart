@@ -7,6 +7,12 @@ sealed class DetailsRepositoryEvent extends Equatable {
   List<Object> get props => [];
 }
 
+class DetailsRepositoryInitialEvent extends DetailsRepositoryEvent {}
+
 class ShowDetailsRepositoryEvent extends DetailsRepositoryEvent {
-  const ShowDetailsRepositoryEvent();
+  final int id;
+
+  const ShowDetailsRepositoryEvent({
+    required this.id
+  });
 }
