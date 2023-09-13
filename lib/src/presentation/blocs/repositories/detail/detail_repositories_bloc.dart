@@ -8,16 +8,14 @@ part 'detail_repositories_state.dart';
 class DetailRepositoriesBloc
     extends Bloc<DetailRepositoriesEvent, DetailRepositoriesState> {
   DetailRepositoriesBloc() : super(const DetailRepositoriesLoading()) {
-    on<RepositoryLoadingEvent>(_onRepositoryLoading);
+    on<RepositoryLoadingEvent>(_onLoading);
   }
 
-  void _onRepositoryLoading(
+  void _onLoading(
     RepositoryLoadingEvent event,
     Emitter emit,
   ) async {
     emit(const DetailRepositoriesLoading());
-
-    await Future.delayed(const Duration(seconds: 1));
 
     emit(DetailRepositoriesSucess(repository: event.repository));
   }

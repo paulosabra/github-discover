@@ -1,7 +1,7 @@
 import 'package:github_discover/src/presentation/pages/home/home_page.dart';
 import 'package:github_discover/src/presentation/pages/profile/add_skill/add_skill_page.dart';
 import 'package:github_discover/src/presentation/pages/profile/profile/profile_screen.dart';
-import 'package:github_discover/src/presentation/pages/repositories/details/repository_details_page.dart';
+import 'package:github_discover/src/presentation/pages/repositories/details/repository_details_screen.dart';
 import 'package:github_discover/src/presentation/pages/repositories/search/repositories_search_screen.dart';
 import 'package:github_discover/src/presentation/pages/users/details/user_details_page.dart';
 import 'package:github_discover/src/presentation/pages/users/search/users_search_page.dart';
@@ -46,7 +46,7 @@ final router = GoRouter(
             GoRoute(
               path: 'id',
               name: AppRoute.repositoryDetails.name,
-              builder: (context, state) => const RepositoryDetailsPage(),
+              builder: (context, state) => const RepositoryDetailsScreen(),
             ),
           ],
         ),
