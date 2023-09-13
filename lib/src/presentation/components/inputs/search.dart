@@ -19,20 +19,21 @@ class CustomSearchInput extends StatefulWidget {
   final TextInputType? textInputType;
   final Function(String)? onSaved;
   final String? Function(String?)? validator;
+  final void Function(String)? onPressedButton;
 
-  const CustomSearchInput({
-    super.key,
-    this.helperText,
-    this.errorText,
-    this.enabled = true,
-    this.inputType = InputType.neutral,
-    this.editingController,
-    this.inputAction,
-    this.inputFormatters,
-    this.textInputType,
-    this.onSaved,
-    this.validator,
-  });
+  const CustomSearchInput(
+      {super.key,
+      this.helperText,
+      this.errorText,
+      this.enabled = true,
+      this.inputType = InputType.neutral,
+      this.editingController,
+      this.inputAction,
+      this.inputFormatters,
+      this.textInputType,
+      this.onSaved,
+      this.validator,
+      this.onPressedButton});
 
   @override
   State<CustomSearchInput> createState() => _CustomSearchInputState();
@@ -47,6 +48,19 @@ class _CustomSearchInputState extends State<CustomSearchInput> {
     super.initState();
     hasFocus = false;
     textEditingController = widget.editingController ?? TextEditingController();
+    textEditingController.addListener(() {
+      if (widget.onPressedButton != null) {
+        widget.onPressedButton!(textEditingController.text);
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    if (widget.editingController == null) {
+      textEditingController.dispose();
+    }
+    super.dispose();
   }
 
   @override

@@ -15,6 +15,8 @@ final class RepositoryDetailsInitialState extends RepositoryDetailsState {}
 
 class RepositoryDetailsLoadingInitialState extends RepositoryDetailsState {}
 
+class RepositoryDetailsEmptyState extends RepositoryDetailsState {}
+
 class RepositoryDetailsSuccessState extends RepositoryDetailsState {
   const RepositoryDetailsSuccessState({required super.repository});
 }

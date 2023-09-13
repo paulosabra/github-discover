@@ -9,26 +9,44 @@ part 'repository_state.dart';
 class RepositoryBloc extends Bloc<RepositoryEvent, RepositoryState> {
   RepositoryBloc() : super(RepositoryInitial()) {
     on<RepositoryInitalEvent>(_onRepositoryInitialEvent);
-   on<RepositoryLoadingEvent>(_onRepositoryLoadingEvent);
+    on<RepositoryFindEvent>(_onRepositoryFindEvent);
   }
 }
 
-
 void _onRepositoryInitialEvent(
-    RepositoryInitalEvent event,
-    Emitter emit,
-  ) async {
-    emit(const RepositorySuccessState(
-      repository: kRepositoryMock
-    ));
+  RepositoryInitalEvent event,
+  Emitter emit,
+) async {
+  emit(RepositoryInitalEvent());
+}
+
+
+void _onRepositoryFindEvent(RepositoryFindEvent event, Emitter emit) async {
+  try {
+    final repositoryName = event.search.toLowerCase().trim();
+
+    if (repositoryName.isEmpty) {
+      emit(const RepositoryEmptyState(message: 'Nome do repositório'));
+      return;
+    }
+
+    final matchingRepository = findRepositoryByName(repositoryName);
+
+    if (matchingRepository != null) {
+      emit(RepositorySuccessState(
+          repository: matchingRepository, founded: 1));
+    } else {
+      emit(const RepositoryErrorState(message: 'Repositório não encontrado'));
+    }
+  } catch (e) {
+    emit(const RepositoryErrorState(message: 'Error'));
+  }
+}
+
+Repository? findRepositoryByName(String repositoryName) {
+  if (kRepositoryMock.name?.toLowerCase() == repositoryName) {
+    return kRepositoryMock;
   }
 
-  
-void _onRepositoryLoadingEvent(
-    RepositoryLoadingEvent event,
-    Emitter emit,
-  ) async {
-    emit(const RepositorySuccessState(
-      repository: kRepositoryMock
-    ));
-  }
+  return null;
+}

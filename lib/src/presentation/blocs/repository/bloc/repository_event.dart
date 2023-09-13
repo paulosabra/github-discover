@@ -9,4 +9,14 @@ sealed class RepositoryEvent extends Equatable {
 
 class RepositoryInitalEvent extends RepositoryEvent {}
 
-class RepositoryLoadingEvent extends RepositoryEvent {}
+class RepositoryFindEvent extends RepositoryEvent{
+  
+  final String search;
+
+  const RepositoryFindEvent({
+    required this.search
+  });
+}
+
+
+

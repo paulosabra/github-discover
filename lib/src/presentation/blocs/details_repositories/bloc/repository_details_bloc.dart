@@ -10,6 +10,7 @@ class RepositoryDetailsBloc extends Bloc<RepositoryDetailsEvent, RepositoryDetai
   RepositoryDetailsBloc() : super(RepositoryDetailsInitialState()) {
     on<RepositoryDetailsInitalEvent>(_onRepositoryDetailsInitalEvent);
     on<RepositoryDetailsLoadingEvent>(_onRepositoryLoadingDetailsInitalEvent);
+   
   }
 }
 
