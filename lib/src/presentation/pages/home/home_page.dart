@@ -4,7 +4,6 @@ import 'package:github_discover/src/presentation/components/icon.dart';
 import 'package:github_discover/src/presentation/components/loader.dart';
 import 'package:github_discover/src/presentation/pages/home/widgets/bottom_navigation.dart';
 import 'package:github_discover/src/presentation/pages/profile/profile/profile_screen.dart';
-import 'package:github_discover/src/presentation/pages/repositories/search/repositories_search_page.dart';
 import 'package:github_discover/src/presentation/pages/repositories/search/repositories_search_screen.dart';
 import 'package:github_discover/src/presentation/pages/users/search/users_search_page.dart';
 import 'package:github_discover/src/utils/extensions/build_context_extensions.dart';

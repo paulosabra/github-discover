@@ -11,4 +11,12 @@ sealed class UsersEvent extends Equatable {
 class UsersInitialEvent extends UsersEvent {}
 
 
-class UsersLoadingEvent extends UsersEvent {}
+class UsersSearchEvent extends UsersEvent {
+
+  final String search;
+
+  const UsersSearchEvent({
+    required this.search
+  });
+
+}

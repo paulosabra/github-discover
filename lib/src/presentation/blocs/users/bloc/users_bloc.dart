@@ -11,7 +11,7 @@ part 'users_state.dart';
 class UsersBloc extends Bloc<UsersEvent, UsersState> {
   UsersBloc() : super(UsersInitial()) {
     on<UsersInitialEvent>(_onUsersInitialEvent);
-    on<UsersLoadingEvent>(_onUsersLoadingEvent);
+    on<UsersSearchEvent>(_onUsersSearchEvent);
   }
 }
 
@@ -22,9 +22,32 @@ void _onUsersInitialEvent(
   emit(const UsersSuccessState(repository: kRepositoryMock, user: kUserMock));
 }
 
-void _onUsersLoadingEvent(
-  UsersLoadingEvent event,
-  Emitter emit,
-) async {
-  emit(const UsersSuccessState(repository: kRepositoryMock, user: kUserMock));
+void _onUsersSearchEvent(UsersSearchEvent event, Emitter emit) async {
+  try {
+    final repositoryName = event.search.toLowerCase().trim();
+
+    if (repositoryName.isEmpty) {
+      emit(const UserEmptyState(message: 'Nome do repositório'));
+      return;
+    }
+
+    final matchingRepository = findRepositoryByName(repositoryName);
+
+    if (matchingRepository != null) {
+      emit(UsersSuccessState(
+          repository: matchingRepository, founded: 1, user: kUserMock));
+    } else {
+      emit(const UsersErrorState(message: 'Repositório não encontrado'));
+    }
+  } catch (e) {
+    emit(const UsersErrorState(message: 'Error'));
+  }
+}
+
+Repository? findRepositoryByName(String repositoryName) {
+  if (kRepositoryMock.name?.toLowerCase() == repositoryName) {
+    return kRepositoryMock;
+  }
+
+  return null;
 }
