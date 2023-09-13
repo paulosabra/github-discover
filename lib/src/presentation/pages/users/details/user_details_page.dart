@@ -10,19 +10,25 @@ import 'package:github_discover/src/presentation/pages/users/widgets/user_card.d
 import 'package:github_discover/src/utils/extensions/build_context_extensions.dart';
 import 'package:github_discover/src/utils/extensions/theme_data_extensions.dart';
 
-class UserDetailsPage extends StatelessWidget {
+class UserDetailsPage extends StatefulWidget {
+  final User user;
+
   const UserDetailsPage({
     super.key,
+    required this.user,
   });
 
   @override
-  Widget build(BuildContext context) {
-    User user = kUserMock;
+  State<UserDetailsPage> createState() => _UserDetailsPageState();
+}
 
+class _UserDetailsPageState extends State<UserDetailsPage> {
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.kBackgrounDefaultColor,
       appBar: CustomAppBar(
-        text: user.name?.toUpperCase(),
+        text: widget.user.name?.toUpperCase(),
         hasBackButton: true,
       ),
       extendBodyBehindAppBar: true,
