@@ -21,9 +21,9 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     ProfileInitalEvent event,
     Emitter emit,
   ) async {
-    // emit(ProfileLoadingState());
+    emit(ProfileLoadingState());
 
-    // emit(const ProfileErrorState(message: 'Deu Erro'));
+    emit(const ProfileErrorState(message: 'Deu Erro'));
 
     emit(const ProfileSuccessState(
       profile: kProfileMock,
