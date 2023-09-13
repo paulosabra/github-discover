@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:github_discover/src/config/routes.dart';
+import 'package:github_discover/src/presentation/blocs/details_repository/details_repository_bloc.dart';
+import 'package:github_discover/src/presentation/blocs/details_user/details_user_bloc.dart';
 import 'package:github_discover/src/presentation/blocs/profile/profile_bloc.dart';
+import 'package:github_discover/src/presentation/blocs/search_repository/search_repository_bloc.dart';
+import 'package:github_discover/src/presentation/blocs/search_user/search_user_bloc.dart';
 import 'package:github_discover/src/utils/extensions/build_context_extensions.dart';
 
 class GitHubDiscoverApp extends StatelessWidget {
@@ -14,6 +18,18 @@ class GitHubDiscoverApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => ProfileBloc()..add(ProfileInitalEvent()),
+        ),
+        BlocProvider(
+          create: (context) => DetailsRepositoryBloc()..add(DetailsRepositoryInitialEvent())
+        ),
+        BlocProvider(
+          create: (context) => DetailsUserBloc()..add(DetailsUserInitialEvent())
+        ),
+        BlocProvider(
+          create: (context) => SearchRepositoryBloc()..add(SearchRepositoryInitialEvent())
+        ),
+        BlocProvider(
+          create: (context) => SearchUserBloc()..add(SearchUserInitialEvent())
         ),
       ],
       child: MaterialApp.router(

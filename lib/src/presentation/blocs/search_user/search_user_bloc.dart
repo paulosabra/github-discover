@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:github_discover/src/domain/entities/profile.dart';
 import 'package:github_discover/src/domain/entities/user.dart';
 
 part 'search_user_event.dart';

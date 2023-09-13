@@ -13,7 +13,6 @@ class DetailsUserBloc extends Bloc<DetailsUserEvent, DetailsUserState> {
   }
 }
 
-
 void _onUserDetailsInitialEvent(
   DetailsUserInitialEvent event, Emitter emit) async {
   emit(DetailsUserInitial());

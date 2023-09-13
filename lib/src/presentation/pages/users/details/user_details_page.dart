@@ -12,7 +12,7 @@ import 'package:github_discover/src/utils/extensions/theme_data_extensions.dart'
 
 class UserDetailsPage extends StatelessWidget {
   const UserDetailsPage({
-    super.key,
+    super.key, String? message, user,
   });
 
   @override

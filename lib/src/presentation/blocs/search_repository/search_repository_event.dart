@@ -7,6 +7,8 @@ sealed class SearchRepositoryEvent extends Equatable {
   List<Object> get props => [];
 }
 
+class SearchRepositoryInitialEvent extends SearchRepositoryEvent {}
+
 class SearchRepositorySearchEvent extends SearchRepositoryEvent{
   const SearchRepositorySearchEvent();
 }
