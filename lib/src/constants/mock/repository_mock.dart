@@ -4,7 +4,7 @@ import 'package:github_discover/src/domain/entities/repository.dart';
 
 const kRepositoryMock = Repository(
   id: 0,
-  name: 'fiap',
+  name: 'Davi',
   fullName: 'fiap/fiap',
   private: true,
   owner: Owner(
