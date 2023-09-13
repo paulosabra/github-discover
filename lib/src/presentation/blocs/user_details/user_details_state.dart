@@ -27,4 +27,3 @@ class UserDetailsErrorState extends UserDetailsState {
     this.message,
   });
 }
-

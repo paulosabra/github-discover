@@ -16,11 +16,3 @@ class RepositoryDetailsLoadingEvent extends RepositoryDetailsEvent {
     required this.repositoryKey,
   });
 }
-
-class RepositoryDetailsSuccessEvent extends RepositoryDetailsEvent {
-  final Repository repository;
-
-  const RepositoryDetailsSuccessEvent({
-    required this.repository,
-  });
-}

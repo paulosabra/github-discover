@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:github_discover/src/config/routes.dart';
 import 'package:github_discover/src/constants/mock/repository_mock.dart';
 import 'package:github_discover/src/constants/spacings.dart';
 import 'package:github_discover/src/domain/entities/user.dart';
@@ -11,8 +10,7 @@ import 'package:github_discover/src/utils/extensions/build_context_extensions.da
 import 'package:github_discover/src/utils/extensions/theme_data_extensions.dart';
 import 'package:go_router/go_router.dart';
 
-
-class UserDetailsPage extends StatefulWidget  {
+class UserDetailsPage extends StatefulWidget {
   final User? user;
   final String? message;
   const UserDetailsPage({
@@ -21,7 +19,7 @@ class UserDetailsPage extends StatefulWidget  {
     this.message,
   });
 
- @override
+  @override
   State<UserDetailsPage> createState() => _UserDetailsPage();
 }
 
@@ -35,9 +33,7 @@ class _UserDetailsPage extends State<UserDetailsPage> {
       appBar: CustomAppBar(
         text: user.name?.toUpperCase(),
         hasBackButton: true,
-        backButtonPressed: () {
-          context.goNamed(AppRoute.usersSearch.name);
-        },
+        backButtonPressed: () => context.pop(),
       ),
       extendBodyBehindAppBar: true,
       body: SafeArea(

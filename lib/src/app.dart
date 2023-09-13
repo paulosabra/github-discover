@@ -20,17 +20,17 @@ class GitHubDiscoverApp extends StatelessWidget {
           create: (context) => ProfileBloc()..add(ProfileInitalEvent()),
         ),
         BlocProvider(
-            create: (context) =>
-                RepositorySearchBloc()..add(RepositorySearchInitialEvent())),
+          create: (context) => RepositorySearchBloc(),
+        ),
         BlocProvider(
-            create: (context) =>
-                RepositoryDetailsBloc()..add(RepositoryDetailsInitialEvent())),
+          create: (context) => RepositoryDetailsBloc(),
+        ),
         BlocProvider(
-            create: (context) =>
-                UserSearchBloc()..add(UserSearchInitialEvent())),
+          create: (context) => UserSearchBloc(),
+        ),
         BlocProvider(
-            create: (context) =>
-                UserDetailsBloc()..add(UserDetailsInitialEvent())),
+          create: (context) => UserDetailsBloc(),
+        ),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,

@@ -6,6 +6,7 @@ sealed class UserDetailsEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
 class UserDetailsInitialEvent extends UserDetailsEvent {}
 
 class UserDetailsLoadingEvent extends UserDetailsEvent {
@@ -13,13 +14,5 @@ class UserDetailsLoadingEvent extends UserDetailsEvent {
 
   const UserDetailsLoadingEvent({
     required this.userKey,
-  });
-}
-
-class UserDetailsSuccessEvent extends UserDetailsEvent {
-  final User user;
-
-  const UserDetailsSuccessEvent({
-    required this.user,
   });
 }

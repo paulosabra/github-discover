@@ -13,8 +13,7 @@ class RepositoryDetailsScreen extends StatefulWidget {
       _RepositoryDetailsScreenState();
 }
 
-class _RepositoryDetailsScreenState
-    extends State<RepositoryDetailsScreen> {
+class _RepositoryDetailsScreenState extends State<RepositoryDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<RepositoryDetailsBloc, RepositoryDetailsState>(

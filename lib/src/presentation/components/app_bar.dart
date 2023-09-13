@@ -8,7 +8,8 @@ import 'package:github_discover/src/presentation/components/text.dart';
 import 'package:github_discover/src/utils/extensions/build_context_extensions.dart';
 import 'package:github_discover/src/utils/extensions/theme_data_extensions.dart';
 
-class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
+class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
+  @override
   final Size preferredSize;
   final String? text;
   final bool hasBackButton;
@@ -16,15 +17,19 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final PreferredSizeWidget? bottom;
 
   CustomAppBar({
-    Key? key,
+    super.key,
     this.text,
     this.backButtonPressed,
     this.hasBackButton = false,
     this.bottom,
-  })  : preferredSize = Size.fromHeight(
-            bottom == null ? kToolbarHeight : kToolbarHeight * 2.5),
-        super(key: key);
+  }) : preferredSize = Size.fromHeight(
+            bottom == null ? kToolbarHeight : kToolbarHeight * 2.5);
 
+  @override
+  State<CustomAppBar> createState() => _CustomAppBarState();
+}
+
+class _CustomAppBarState extends State<CustomAppBar> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -33,22 +38,16 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       centerTitle: true,
       elevation: Spacing.s0,
       surfaceTintColor: Colors.transparent,
-      bottom: bottom,
-      leading: hasBackButton
+      bottom: widget.bottom,
+      leading: widget.hasBackButton
           ? GestureDetector(
-              onTap: () {
-                if (backButtonPressed != null) {
-                  backButtonPressed!();
-                } else {
-                  Navigator.of(context).pop();
-                }
-              },
+              onTap: widget.backButtonPressed,
               child: const CustomIcon(
                 iconPath: Asset.arrowLeftIcon,
               ),
             )
           : Container(),
-      title: text == null
+      title: widget.text == null
           ? Row(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -65,7 +64,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               ],
             )
           : CustomText(
-              text: text!,
+              text: widget.text!,
               color: context.colors.kForegroundColor,
               style: TypographyType.title,
             ),

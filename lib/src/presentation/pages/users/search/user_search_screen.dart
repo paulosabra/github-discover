@@ -22,13 +22,26 @@ class _UserSearchScreenState extends State<UserSearchScreen> {
 
         if (state is UserSearchErrorState) {
           return UserSearchPage(
-            message: 'Non-existent user',
+            message: state.message,
             user: null,
             quantityFound: 0,
             onClickUserSearchEvent: (userName) {
-              context.read<UserSearchBloc>().add(
-                  UserSearchQueryEvent(
-                      enteredValue: userName ?? ''));
+              context
+                  .read<UserSearchBloc>()
+                  .add(UserSearchQueryEvent(enteredValue: userName ?? ''));
+            },
+          );
+        }
+
+        if (state is UserSearchEmptyState) {
+          return UserSearchPage(
+            message: state.message,
+            user: null,
+            quantityFound: 0,
+            onClickUserSearchEvent: (userName) {
+              context
+                  .read<UserSearchBloc>()
+                  .add(UserSearchQueryEvent(enteredValue: userName ?? ''));
             },
           );
         }
@@ -37,8 +50,9 @@ class _UserSearchScreenState extends State<UserSearchScreen> {
           user: state.user,
           quantityFound: state.quantityFound ?? 0,
           onClickUserSearchEvent: (userName) {
-            context.read<UserSearchBloc>().add(
-                UserSearchQueryEvent(enteredValue: userName ?? ''));
+            context
+                .read<UserSearchBloc>()
+                .add(UserSearchQueryEvent(enteredValue: userName ?? ''));
           },
         );
       },

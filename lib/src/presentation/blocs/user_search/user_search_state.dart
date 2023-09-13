@@ -31,4 +31,10 @@ class UserSearchErrorState extends UserSearchState {
   });
 }
 
-class UserSearchEmptyState extends UserSearchState {}
+class UserSearchEmptyState extends UserSearchState {
+  final String? message;
+
+  const UserSearchEmptyState({
+    this.message,
+  });
+}

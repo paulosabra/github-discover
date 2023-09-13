@@ -9,10 +9,6 @@ sealed class RepositorySearchEvent extends Equatable {
 
 class RepositorySearchInitialEvent extends RepositorySearchEvent {}
 
-class RepositorySearchLoadingEvent extends RepositorySearchEvent {}
-
-class RepositorySearchEmptyEvent extends RepositorySearchEvent {}
-
 class RepositorySearchQueryEvent extends RepositorySearchEvent {
   final String enteredValue;
 

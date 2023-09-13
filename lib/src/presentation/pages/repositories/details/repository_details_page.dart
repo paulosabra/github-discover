@@ -6,7 +6,6 @@ import 'package:github_discover/src/presentation/pages/repositories/widgets/repo
 import 'package:github_discover/src/utils/extensions/build_context_extensions.dart';
 import 'package:github_discover/src/utils/extensions/theme_data_extensions.dart';
 import 'package:go_router/go_router.dart';
-import '../../../../config/routes.dart';
 
 class RepositoryDetailsPage extends StatefulWidget {
   final Repository? repository;
@@ -22,7 +21,6 @@ class RepositoryDetailsPage extends StatefulWidget {
 }
 
 class _RepositoryDetailsPage extends State<RepositoryDetailsPage> {
-
   @override
   Widget build(BuildContext context) {
     Repository repository = widget.repository!;
@@ -32,9 +30,7 @@ class _RepositoryDetailsPage extends State<RepositoryDetailsPage> {
       appBar: CustomAppBar(
         text: repository.name?.toUpperCase(),
         hasBackButton: true,
-        backButtonPressed: () {
-          context.goNamed(AppRoute.repositoriesSearch.name);
-        },
+        backButtonPressed: () => context.pop(),
       ),
       extendBodyBehindAppBar: true,
       body: SafeArea(

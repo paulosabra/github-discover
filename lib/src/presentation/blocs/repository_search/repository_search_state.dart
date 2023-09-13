@@ -31,4 +31,10 @@ class RepositorySearchErrorState extends RepositorySearchState {
   });
 }
 
-class RepositorySearchEmptyState extends RepositorySearchState {}
+class RepositorySearchEmptyState extends RepositorySearchState {
+  final String? message;
+
+  const RepositorySearchEmptyState({
+    this.message,
+  });
+}

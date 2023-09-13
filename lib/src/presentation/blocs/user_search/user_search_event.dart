@@ -9,10 +9,6 @@ sealed class UserSearchEvent extends Equatable {
 
 class UserSearchInitialEvent extends UserSearchEvent {}
 
-class UserSearchLoadingEvent extends UserSearchEvent {}
-
-class UserSearchEmptyEvent extends UserSearchEvent {}
-
 class UserSearchQueryEvent extends UserSearchEvent {
   final String enteredValue;
 

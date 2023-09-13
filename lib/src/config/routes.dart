@@ -46,8 +46,7 @@ final router = GoRouter(
             GoRoute(
               path: 'id',
               name: AppRoute.repositoryDetails.name,
-              builder: (context, state) =>
-                  const RepositoryDetailsScreen(),
+              builder: (context, state) => const RepositoryDetailsScreen(),
             ),
           ],
         ),

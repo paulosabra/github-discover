@@ -22,7 +22,20 @@ class _RepositorySearchScreenState extends State<RepositorySearchScreen> {
 
         if (state is RepositorySearchErrorState) {
           return RepositoriesSearchPage(
-            message: 'Non-existent repository',
+            message: state.message,
+            repository: null,
+            quantityFound: 0,
+            onClickRepositorySearchEvent: (repositoryName) {
+              context.read<RepositorySearchBloc>().add(
+                  RepositorySearchQueryEvent(
+                      enteredValue: repositoryName ?? ''));
+            },
+          );
+        }
+
+        if (state is RepositorySearchEmptyState) {
+          return RepositoriesSearchPage(
+            message: state.message,
             repository: null,
             quantityFound: 0,
             onClickRepositorySearchEvent: (repositoryName) {

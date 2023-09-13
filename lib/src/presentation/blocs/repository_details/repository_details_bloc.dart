@@ -12,7 +12,6 @@ class RepositoryDetailsBloc
   RepositoryDetailsBloc() : super(RepositoryDetailsInitial()) {
     on<RepositoryDetailsInitialEvent>(_onRepositoryDetailsInitialEvent);
     on<RepositoryDetailsLoadingEvent>(_onRepositoryDetailsLoadingEvent);
-    on<RepositoryDetailsSuccessEvent>(_onRepositoryDetailsSuccessEvent);
   }
 }
 
@@ -29,9 +28,4 @@ void _onRepositoryDetailsLoadingEvent(
     emit(const RepositoryDetailsErrorState(message: "Non-existent repository"));
   }
   emit(RepositoryDetailsLoadingEvent(repositoryKey: event.repositoryKey));
-}
-
-void _onRepositoryDetailsSuccessEvent(
-    RepositoryDetailsSuccessEvent event, Emitter emit) async {
-  emit(RepositoryDetailsSuccessState(repository: event.repository));
 }

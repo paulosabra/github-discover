@@ -9,8 +9,7 @@ class UserDetailsScreen extends StatefulWidget {
   const UserDetailsScreen({super.key});
 
   @override
-  State<UserDetailsScreen> createState() =>
-      _UserDetailsSearchState();
+  State<UserDetailsScreen> createState() => _UserDetailsSearchState();
 }
 
 class _UserDetailsSearchState extends State<UserDetailsScreen> {

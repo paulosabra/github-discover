@@ -10,7 +10,6 @@ class UserDetailsBloc extends Bloc<UserDetailsEvent, UserDetailsState> {
   UserDetailsBloc() : super(UserDetailsInitial()) {
     on<UserDetailsInitialEvent>(_onUserDetailsInitialEvent);
     on<UserDetailsLoadingEvent>(_onUserDetailsLoadingEvent);
-    on<UserDetailsSuccessEvent>(_onUserDetailsSuccessEvent);
   }
 }
 
@@ -27,9 +26,4 @@ void _onUserDetailsLoadingEvent(
     emit(const UserDetailsErrorState(message: "Non-existent user"));
   }
   emit(UserDetailsLoadingEvent(userKey: event.userKey));
-}
-
-void _onUserDetailsSuccessEvent(
-    UserDetailsSuccessEvent event, Emitter emit) async {
-  emit(UserDetailsSuccessState(user: event.user));
 }

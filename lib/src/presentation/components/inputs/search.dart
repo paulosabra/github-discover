@@ -32,7 +32,7 @@ class CustomSearchInput extends StatefulWidget {
     this.inputFormatters,
     this.textInputType,
     this.onSaved,
-    this.validator, 
+    this.validator,
     this.onChanged,
   });
 
