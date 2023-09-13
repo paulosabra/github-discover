@@ -29,6 +29,10 @@ class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   State<CustomAppBar> createState() => _CustomAppBarState();
 }
 
+void BackScreen(BuildContext context) {
+  Navigator.of(context).pop();
+}
+
 class _CustomAppBarState extends State<CustomAppBar> {
   @override
   Widget build(BuildContext context) {
@@ -41,7 +45,9 @@ class _CustomAppBarState extends State<CustomAppBar> {
       bottom: widget.bottom,
       leading: widget.hasBackButton
           ? GestureDetector(
-              onTap: () {},
+              onTap: () {
+                BackScreen(context);
+              },
               child: const CustomIcon(
                 iconPath: Asset.arrowLeftIcon,
               ),

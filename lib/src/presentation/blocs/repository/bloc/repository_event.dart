@@ -9,5 +9,4 @@ sealed class RepositoryEvent extends Equatable {
 
 class RepositoryInitalEvent extends RepositoryEvent {}
 
-
 class RepositoryLoadingEvent extends RepositoryEvent {}
