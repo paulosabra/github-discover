@@ -29,6 +29,7 @@
       }
     }
   },
+  "noRepositoriesFound": "Repositório não encontrado",
   "repoSearchNavigationItem": "Repo Search",
   "searchButton": "Pesquisar",
   "repositoryLabel": "Repositório:",

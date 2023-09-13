@@ -8,11 +8,11 @@ import 'package:github_discover/src/presentation/components/text.dart';
 import 'package:github_discover/src/utils/extensions/build_context_extensions.dart';
 import 'package:github_discover/src/utils/extensions/theme_data_extensions.dart';
 
-class UserListTile extends StatelessWidget {
+class UserListTitle extends StatelessWidget {
   final User user;
   final VoidCallback onTap;
 
-  const UserListTile({
+  const UserListTitle({
     super.key,
     required this.user,
     required this.onTap,

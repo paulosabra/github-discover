@@ -19,6 +19,7 @@ class CustomSearchInput extends StatefulWidget {
   final TextInputType? textInputType;
   final Function(String)? onSaved;
   final String? Function(String?)? validator;
+  final void Function(String)? onChanged;
 
   const CustomSearchInput({
     super.key,
@@ -32,6 +33,7 @@ class CustomSearchInput extends StatefulWidget {
     this.textInputType,
     this.onSaved,
     this.validator,
+    this.onChanged,
   });
 
   @override
@@ -47,6 +49,20 @@ class _CustomSearchInputState extends State<CustomSearchInput> {
     super.initState();
     hasFocus = false;
     textEditingController = widget.editingController ?? TextEditingController();
+
+    textEditingController.addListener(() {
+      if (widget.onChanged != null) {
+        widget.onChanged!(textEditingController.text);
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    if (widget.editingController == null) {
+      textEditingController.dispose();
+    }
+    super.dispose();
   }
 
   @override

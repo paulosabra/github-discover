@@ -8,6 +8,7 @@ import 'package:github_discover/src/utils/extensions/theme_data_extensions.dart'
 class CustomSearchBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   final Size preferredSize;
+
   final void Function(String) onChanged;
   final VoidCallback onPressed;
 
@@ -26,8 +27,10 @@ class CustomSearchBar extends StatelessWidget implements PreferredSizeWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.max,
         children: [
-          const Expanded(
-            child: CustomSearchInput(),
+          Expanded(
+            child: CustomSearchInput(
+              onChanged: onChanged,
+            ),
           ),
           const SizedBox(width: Spacing.s4),
           CustomButton(

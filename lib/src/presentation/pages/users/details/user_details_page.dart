@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:github_discover/src/constants/mock/repository_mock.dart';
-import 'package:github_discover/src/constants/mock/user_mock.dart';
 import 'package:github_discover/src/constants/spacings.dart';
 import 'package:github_discover/src/domain/entities/user.dart';
 import 'package:github_discover/src/presentation/components/app_bar.dart';
@@ -10,20 +9,26 @@ import 'package:github_discover/src/presentation/pages/users/widgets/user_card.d
 import 'package:github_discover/src/utils/extensions/build_context_extensions.dart';
 import 'package:github_discover/src/utils/extensions/theme_data_extensions.dart';
 
-class UserDetailsPage extends StatelessWidget {
+class UserDetailsPage extends StatefulWidget {
+  final User user;
+
   const UserDetailsPage({
     super.key,
+    required this.user,
   });
 
   @override
-  Widget build(BuildContext context) {
-    User user = kUserMock;
+  State<UserDetailsPage> createState() => _UserDetailsPageState();
+}
 
+class _UserDetailsPageState extends State<UserDetailsPage> {
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.kBackgrounDefaultColor,
       appBar: CustomAppBar(
-        text: user.name?.toUpperCase(),
-        hasBackButton: true,
+        text: widget.user.name?.toUpperCase(),
+        hasBackButton: false,
       ),
       extendBodyBehindAppBar: true,
       body: SafeArea(
@@ -32,8 +37,8 @@ class UserDetailsPage extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(Spacing.s16),
             child: ResponsiveColumnLayout(
-              startContent: const UserCard(
-                user: kUserMock,
+              startContent: UserCard(
+                user: widget.user,
               ),
               endContent: ListView.builder(
                 physics: const ClampingScrollPhysics(),
