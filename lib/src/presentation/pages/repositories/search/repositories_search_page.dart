@@ -4,6 +4,7 @@ import 'package:github_discover/src/constants/mock/repository_mock.dart';
 import 'package:github_discover/src/constants/spacings.dart';
 import 'package:github_discover/src/constants/theme.dart';
 import 'package:github_discover/src/constants/typographies.dart';
+import 'package:github_discover/src/domain/entities/repository.dart';
 import 'package:github_discover/src/presentation/components/app_bar.dart';
 import 'package:github_discover/src/presentation/components/app_bar_bottom.dart';
 import 'package:github_discover/src/presentation/components/text.dart';
@@ -14,7 +15,16 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 class RepositoriesSearchPage extends StatelessWidget {
-  const RepositoriesSearchPage({super.key});
+  final List<Repository> repositories;
+  final void Function(String) onSearch;
+  final void Function(Repository) onDetailTap;
+
+  const RepositoriesSearchPage({
+    super.key,
+    required this.repositories,
+    required this.onSearch,
+    required this.onDetailTap,
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -4,6 +4,7 @@ import 'package:github_discover/src/constants/mock/user_mock.dart';
 import 'package:github_discover/src/constants/spacings.dart';
 import 'package:github_discover/src/constants/theme.dart';
 import 'package:github_discover/src/constants/typographies.dart';
+import 'package:github_discover/src/domain/entities/user.dart';
 import 'package:github_discover/src/presentation/components/app_bar.dart';
 import 'package:github_discover/src/presentation/components/app_bar_bottom.dart';
 import 'package:github_discover/src/presentation/components/text.dart';
@@ -14,7 +15,15 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 class UsersSearchPage extends StatefulWidget {
-  const UsersSearchPage({super.key});
+   final List<User> users;
+  final void Function(String) onSearch;
+  final void Function(User) onDetailTap;
+  const UsersSearchPage({
+    super.key,
+    required this.users,
+    required this.onSearch,
+    required this.onDetailTap,
+  });
 
   @override
   State<UsersSearchPage> createState() => _UsersSearchPageState();

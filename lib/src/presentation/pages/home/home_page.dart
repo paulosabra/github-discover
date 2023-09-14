@@ -26,8 +26,8 @@ class _HomePageState extends State<HomePage> {
 
   static final List<Widget> _pages = <Widget>[
     const ProfileScreen(),
-    const RepositoriesSearchPage(),
-    const UsersSearchPage(),
+    const RepositoriesSearchPage(repositories: [], onSearch: (String ) {  }, onDetailTap: (Repository ) {  },),
+    const UsersSearchPage(users: [], onSearch: (String ) {  }, onDetailTap: (User) { },),
   ];
 
   @override

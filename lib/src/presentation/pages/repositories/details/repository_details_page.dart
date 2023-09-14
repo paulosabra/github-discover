@@ -8,7 +8,12 @@ import 'package:github_discover/src/utils/extensions/build_context_extensions.da
 import 'package:github_discover/src/utils/extensions/theme_data_extensions.dart';
 
 class RepositoryDetailsPage extends StatelessWidget {
-  const RepositoryDetailsPage({super.key});
+  final Repository repository;
+
+  const RepositoryDetailsPage({
+    super.key,
+    required this.repository,
+  });
 
   @override
   Widget build(BuildContext context) {
