@@ -7,8 +7,18 @@ import 'package:github_discover/src/presentation/pages/repositories/widgets/repo
 import 'package:github_discover/src/utils/extensions/build_context_extensions.dart';
 import 'package:github_discover/src/utils/extensions/theme_data_extensions.dart';
 
-class RepositoryDetailsPage extends StatelessWidget {
+
+class RepositoryDetailsPage extends StatefulWidget {
   const RepositoryDetailsPage({super.key});
+
+ @override
+  State<RepositoryDetailsPage> createState() => RepoDetailsState();
+}
+
+class RepoDetailsState extends State<RepositoryDetailsPage> {
+  late TextEditingController titleController;
+  late TextEditingController descriptionController;
+
 
   @override
   Widget build(BuildContext context) {

@@ -15,10 +15,7 @@ import 'package:intl/intl.dart';
 
 class RepositoriesSearchPage extends StatefulWidget {
 
-  const RepositoriesSearchPage({
-    super.key,
-   
-    });
+  const RepositoriesSearchPage({ super.key  });
 
     @override
   State<RepositoriesSearchPage> createState() => _RepoSearchScreenStateState();

@@ -10,11 +10,18 @@ import 'package:github_discover/src/presentation/pages/users/widgets/user_card.d
 import 'package:github_discover/src/utils/extensions/build_context_extensions.dart';
 import 'package:github_discover/src/utils/extensions/theme_data_extensions.dart';
 
-class UserDetailsPage extends StatelessWidget {
+
+
+class UserDetailsPage extends StatefulWidget {
   const UserDetailsPage({
     super.key,
   });
-
+   @override
+  State<UserDetailsPage> createState() => UserDetailsPageState();
+}
+class UserDetailsPageState extends State<UserDetailsPage> {
+  late TextEditingController titleController;
+  late TextEditingController descriptionController;
   @override
   Widget build(BuildContext context) {
     User user = kUserMock;

@@ -4,7 +4,8 @@ import 'package:github_discover/src/constants/assets.dart';
 import 'package:github_discover/src/presentation/blocs/repositorySearch/repo_search_bloc.dart';
 import 'package:github_discover/src/presentation/components/empty_state.dart';
 import 'package:github_discover/src/presentation/components/loader.dart';
-import 'package:github_discover/src/presentation/pages/repositories/search/repositories_search_page.dart';
+import 'package:github_discover/src/presentation/pages/repositories/details/repository_details_page.dart';
+
 
 class RepositoryDetailsScreen extends StatefulWidget {
   const RepositoryDetailsScreen({super.key});
@@ -30,8 +31,8 @@ class _RepositoryDetailsState extends State<RepositoryDetailsScreen> {
           );
         }
 
-        return RepositoriesSearchPage(
-          
+        return RepositoryDetailsPage(
+
         );
       },
     );

@@ -31,7 +31,7 @@ class _RepoSearchScreenState extends State<RepoSearchScreen> {
         }
 
         return RepositoriesSearchPage(
-
+          
 );
 
       },

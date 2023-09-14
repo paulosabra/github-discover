@@ -3,9 +3,10 @@ import 'package:github_discover/src/presentation/pages/profile/add_skill/add_ski
 import 'package:github_discover/src/presentation/pages/profile/profile/profile_screen.dart';
 import 'package:github_discover/src/presentation/pages/repositories/details/repository_details_screen.dart';
 import 'package:github_discover/src/presentation/pages/repositories/search/repositories_search_screen.dart';
-import 'package:github_discover/src/presentation/pages/users/details/user_details_page.dart';
-import 'package:github_discover/src/presentation/pages/users/search/users_search_page.dart';
 import 'package:go_router/go_router.dart';
+
+import '../presentation/pages/users/details/user_details_screen.dart';
+import '../presentation/pages/users/search/users_search_screen.dart';
 
 enum AppRoute {
   home,
@@ -53,12 +54,12 @@ final router = GoRouter(
         GoRoute(
           path: 'users',
           name: AppRoute.usersSearch.name,
-          builder: (context, state) => const UsersSearchPage(),
+          builder: (context, state) => const UserSearchScreen(),
           routes: [
             GoRoute(
               path: 'id',
               name: AppRoute.userDetails.name,
-              builder: (context, state) => const UserDetailsPage(),
+              builder: (context, state) => const UserDetailsScreen(),
             ),
           ],
         ),

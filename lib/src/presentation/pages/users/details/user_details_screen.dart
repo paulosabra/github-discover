@@ -6,14 +6,14 @@ import 'package:github_discover/src/presentation/components/empty_state.dart';
 import 'package:github_discover/src/presentation/components/loader.dart';
 import 'package:github_discover/src/presentation/pages/users/details/user_details_page.dart';
 
-class _UserDetailsScreen extends StatefulWidget {
-  const _UserDetailsScreen({super.key});
+class UserDetailsScreen extends StatefulWidget {
+  const UserDetailsScreen({super.key});
 
   @override
-  State<_UserDetailsScreen> createState() => _UserDetailsScreenState();
+  State<UserDetailsScreen> createState() => _UserDetailsScreenState();
 }
 
-class _UserDetailsScreenState extends State<_UserDetailsScreen> {
+class _UserDetailsScreenState extends State<UserDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<UserDetailsBloc, UserDetailsState>(
