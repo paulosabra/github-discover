@@ -14,6 +14,7 @@ import 'package:github_discover/src/domain/usecases/profile/skill_add_usecase.da
 import 'package:github_discover/src/domain/usecases/profile/skill_delete_usecase.dart';
 import 'package:github_discover/src/domain/usecases/profile/skill_updated_usecase.dart';
 import 'package:github_discover/src/domain/usecases/repository/get_repositories_usecase.dart';
+import 'package:github_discover/src/domain/usecases/repository/get_repository_usecase.dart';
 import 'package:github_discover/src/presentation/blocs/profile/profile_bloc.dart';
 import 'package:github_discover/src/presentation/blocs/repositories/details/repository_details_bloc.dart';
 import 'package:github_discover/src/presentation/blocs/repositories/search/repositories_search_bloc.dart';
@@ -68,6 +69,9 @@ void startModules() {
   getIt.registerLazySingleton(() => GetRepositoriesUseCase(
         getIt<RepositoryRepository>(),
       ));
+  getIt.registerLazySingleton(() => GetRepositoryUseCase(
+        getIt<RepositoryRepository>(),
+      ));
 
   // Blocs
   getIt.registerFactory<ProfileBloc>(() => ProfileBloc(
@@ -80,7 +84,9 @@ void startModules() {
   getIt.registerFactory<RepositoriesSearchBloc>(() => RepositoriesSearchBloc(
         getRepositoriesUseCase: getIt<GetRepositoriesUseCase>(),
       ));
-  getIt.registerFactory<RepositoryDetailsBloc>(() => RepositoryDetailsBloc());
+  getIt.registerFactory<RepositoryDetailsBloc>(() => RepositoryDetailsBloc(
+        getRepositoryUseCase: getIt<GetRepositoryUseCase>(),
+      ));
   getIt.registerFactory<UsersSearchBloc>(() => UsersSearchBloc());
   getIt.registerFactory<UserDetailsBloc>(() => UserDetailsBloc());
 }

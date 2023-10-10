@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
-import 'package:flutter/material.dart';
 import 'package:github_discover/src/data/datasources/remote/repository_remote_data_source.dart';
 import 'package:github_discover/src/data/utils/exception.dart';
 import 'package:github_discover/src/data/utils/failure.dart';
@@ -22,7 +21,18 @@ class RepositoryRepositoryImpl implements RepositoryRepository {
       final result = await remoteDataSource.getRepositories(search: search);
       return Right(result.map((e) => e.toEntity()).toList());
     } on ServerException {
-      debugPrint("******* Failure");
+      return const Left(ServerFailure('Server Exception'));
+    } on SocketException {
+      return const Left(ConnectionFailure('Falha na conexão com a rede'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, Repository>> getRepository(String fullname) async {
+    try {
+      final result = await remoteDataSource.getRepository(fullname);
+      return Right(result.toEntity());
+    } on ServerException {
       return const Left(ServerFailure('Server Exception'));
     } on SocketException {
       return const Left(ConnectionFailure('Falha na conexão com a rede'));
