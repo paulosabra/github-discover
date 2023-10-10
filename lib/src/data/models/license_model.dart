@@ -6,13 +6,11 @@ part 'license_model.g.dart';
 
 @JsonSerializable()
 class LicenseModel extends Equatable {
-  @JsonKey(name: 'name')
+  @JsonKey(name: "name")
   final String? name;
-
-  @JsonKey(name: 'spdx_id')
+  @JsonKey(name: "spdx_id")
   final String? spdxId;
-
-  @JsonKey(name: 'url')
+  @JsonKey(name: "url")
   final String? url;
 
   const LicenseModel({

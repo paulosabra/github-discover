@@ -12,7 +12,7 @@ final class RepositoriesSearchInitial extends RepositoriesSearchState {}
 final class RepositoriesSearchLoading extends RepositoriesSearchState {}
 
 final class RepositoriesSearchSuccess extends RepositoriesSearchState {
-  final Repositories? repositories;
+  final RepositoriesModel? repositories;
 
   const RepositoriesSearchSuccess({
     this.repositories,

@@ -31,11 +31,9 @@ class OwnerModel extends Equatable {
       );
 
   @override
-  List<Object?> get props {
-    return [
-      id,
-      login,
-      avatarUrl,
-    ];
-  }
+  List<Object?> get props => [
+        id,
+        login,
+        avatarUrl,
+      ];
 }

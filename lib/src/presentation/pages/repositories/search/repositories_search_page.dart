@@ -12,7 +12,7 @@ import 'package:github_discover/src/utils/extensions/theme_data_extensions.dart'
 import 'package:intl/intl.dart';
 
 class RepositoriesSearchPage extends StatefulWidget {
-  final Repositories repositories;
+  final RepositoriesModel repositories;
   final void Function(String?) onSearch;
   final void Function(Repository?) onItemTap;
 

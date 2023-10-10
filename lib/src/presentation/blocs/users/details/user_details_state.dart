@@ -13,7 +13,7 @@ final class UserDetailsLoading extends UserDetailsState {}
 
 final class UserDetailsSuccess extends UserDetailsState {
   final User? user;
-  final Repositories? repositories;
+  final RepositoriesModel? repositories;
 
   const UserDetailsSuccess({
     required this.user,

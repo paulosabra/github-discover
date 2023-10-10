@@ -10,52 +10,36 @@ part 'repository_model.g.dart';
 class RepositoryModel extends Equatable {
   @JsonKey(name: 'id')
   final int? id;
-
   @JsonKey(name: 'name')
   final String? name;
-
-  @JsonKey(name: 'fullName')
+  @JsonKey(name: 'full_name')
   final String? fullName;
-
   @JsonKey(name: 'private')
   final bool? private;
-
   @JsonKey(name: 'owner')
   final OwnerModel? owner;
-
   @JsonKey(name: 'html_url')
   final String? htmlUrl;
-
   @JsonKey(name: 'license')
   final LicenseModel? license;
-
   @JsonKey(name: 'language')
   final String? language;
-
   @JsonKey(name: 'description')
   final String? description;
-
   @JsonKey(name: 'visibility')
   final String? visibility;
-
   @JsonKey(name: 'fork')
   final bool? fork;
-
   @JsonKey(name: 'stargazers_count')
   final int? stargazersCount;
-
   @JsonKey(name: 'forks_count')
   final int? forksCount;
-
-  @JsonKey(name: 'subscribers_count')
+  @JsonKey(name: 'watchers_count')
   final int? subscribersCount;
-
   @JsonKey(name: 'created_at')
   final String? createdAt;
-
   @JsonKey(name: 'updated_at')
   final String? updatedAt;
-
   @JsonKey(name: 'pushed_at')
   final String? pushedAt;
 
@@ -96,8 +80,8 @@ class RepositoryModel extends Equatable {
         description: description,
         visibility: visibility,
         fork: fork,
-        stargazersCount: stargazersCount,
         forksCount: forksCount,
+        stargazersCount: stargazersCount,
         subscribersCount: subscribersCount,
         createdAt: createdAt,
         updatedAt: updatedAt,
