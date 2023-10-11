@@ -27,7 +27,7 @@ class UserDetailsScreenState extends State<UserDetailsScreen> {
   final UserDetailsBloc _bloc = getIt.get<UserDetailsBloc>();
 
   User? user;
-  Repositories repositories = [];
+  RepositoriesModel repositories = [];
 
   @override
   void initState() {
