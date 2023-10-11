@@ -24,7 +24,7 @@ final router = GoRouter(
       name: AppRoute.home.name,
       builder: (context, state) {
         return HomePage(
-          index: state.extra as int? ?? 0,
+          index: state.extra is int ? state.extra as int? ?? 0 : 0,
         );
       },
       routes: [
