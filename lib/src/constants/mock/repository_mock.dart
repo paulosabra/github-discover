@@ -26,7 +26,7 @@ const kRepositoryMock = Repository(
   forksCount: 3,
   stargazersCount: 30,
   subscribersCount: 2,
-  createdAt: '',
-  updatedAt: '',
-  pushedAt: '',
+  createdAt: null,
+  updatedAt: null,
+  pushedAt: null,
 );
