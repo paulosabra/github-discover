@@ -2,14 +2,19 @@ import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:github_discover/src/config/hive.dart';
 import 'package:github_discover/src/data/datasources/local/profile_local_data_source.dart';
+import 'package:github_discover/src/data/datasources/local/repository_local_data_source.dart';
 import 'package:github_discover/src/data/datasources/remote/profile_remote_data_source.dart';
+import 'package:github_discover/src/data/datasources/remote/repository_remote_data_source.dart';
 import 'package:github_discover/src/data/repositories/profile_repository_impl.dart';
 import 'package:github_discover/src/domain/repositories/profile_repository.dart';
+import 'package:github_discover/src/domain/repositories/repository_repository.dart';
 import 'package:github_discover/src/domain/usecases/profile/get_profile_usecase.dart';
 import 'package:github_discover/src/domain/usecases/profile/get_skills_usecase.dart';
 import 'package:github_discover/src/domain/usecases/profile/skill_add_usecase.dart';
 import 'package:github_discover/src/domain/usecases/profile/skill_delete_usecase.dart';
 import 'package:github_discover/src/domain/usecases/profile/skill_updated_usecase.dart';
+import 'package:github_discover/src/domain/usecases/repositories/get_repositories_usecase.dart';
+import 'package:github_discover/src/domain/usecases/repositories/get_repository_usecase.dart';
 import 'package:github_discover/src/presentation/blocs/profile/profile_bloc.dart';
 import 'package:github_discover/src/presentation/blocs/repositories/details/repository_details_bloc.dart';
 import 'package:github_discover/src/presentation/blocs/repositories/search/repositories_search_bloc.dart';
@@ -27,10 +32,16 @@ void startModules() {
     () => ProfileLocalDataSourceImpl(hive),
   );
 
+  getIt.registerLazySingleton<RepositoryLocalDataSource>(
+      () => RepositoryLocalDataSourceImpl(hive));
+
   // RemoteDataSource
   getIt.registerLazySingleton<ProfileRemoteDataSource>(
     () => ProfileRemoteDataSourceImpl(getIt<Dio>()),
   );
+
+  getIt.registerLazySingleton<RepositoryRemoteDataSource>(
+      () => RepositoryRemoteDataSourceImpl(getIt<Dio>()));
 
   // Repositories
   getIt.registerLazySingleton<ProfileRepository>(() => ProfileRepositoryImpl(
@@ -53,6 +64,12 @@ void startModules() {
       ));
   getIt.registerLazySingleton(() => SkillUpdateUseCase(
         getIt<ProfileRepository>(),
+      ));
+  getIt.registerLazySingleton(() => GetRepositoryUseCase(
+        getIt<RepositoryRepository>(),
+      ));
+  getIt.registerLazySingleton(() => GetRepositoriesUseCase(
+        getIt<RepositoryRepository>(),
       ));
 
   // Blocs
