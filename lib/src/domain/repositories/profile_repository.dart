@@ -10,3 +10,5 @@ abstract class ProfileRepository {
   Future<void> deleteSkill(int id);
   Future<void> updateSkill(Skill skill);
 }
+
+

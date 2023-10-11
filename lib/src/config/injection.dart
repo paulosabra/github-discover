@@ -3,13 +3,18 @@ import 'package:get_it/get_it.dart';
 import 'package:github_discover/src/config/hive.dart';
 import 'package:github_discover/src/data/datasources/local/profile_local_data_source.dart';
 import 'package:github_discover/src/data/datasources/remote/profile_remote_data_source.dart';
+import 'package:github_discover/src/data/datasources/remote/repository_remote_data_source.dart';
 import 'package:github_discover/src/data/repositories/profile_repository_impl.dart';
+import 'package:github_discover/src/data/repositories/repository_repo_impl.dart';
 import 'package:github_discover/src/domain/repositories/profile_repository.dart';
+import 'package:github_discover/src/domain/repositories/repository_repo.dart';
 import 'package:github_discover/src/domain/usecases/profile/get_profile_usecase.dart';
 import 'package:github_discover/src/domain/usecases/profile/get_skills_usecase.dart';
 import 'package:github_discover/src/domain/usecases/profile/skill_add_usecase.dart';
 import 'package:github_discover/src/domain/usecases/profile/skill_delete_usecase.dart';
 import 'package:github_discover/src/domain/usecases/profile/skill_updated_usecase.dart';
+import 'package:github_discover/src/domain/usecases/repository/get_repositories_usecase.dart';
+import 'package:github_discover/src/domain/usecases/repository/get_repository_usecase.dart';
 import 'package:github_discover/src/presentation/blocs/profile/profile_bloc.dart';
 import 'package:github_discover/src/presentation/blocs/repositories/details/repository_details_bloc.dart';
 import 'package:github_discover/src/presentation/blocs/repositories/search/repositories_search_bloc.dart';
@@ -63,8 +68,33 @@ void startModules() {
         skillDeleteUseCase: getIt<SkillDeleteUseCase>(),
         skillUpdateUseCase: getIt<SkillUpdateUseCase>(),
       ));
-  getIt.registerFactory<RepositoriesSearchBloc>(() => RepositoriesSearchBloc());
-  getIt.registerFactory<RepositoryDetailsBloc>(() => RepositoryDetailsBloc());
+
   getIt.registerFactory<UsersSearchBloc>(() => UsersSearchBloc());
   getIt.registerFactory<UserDetailsBloc>(() => UserDetailsBloc());
+
+
+
+   getIt.registerLazySingleton<RepositoryRemoteDataSource>(
+    () => RepositoryRemoteDataSourceImpl(getIt<Dio>()),
+  );
+
+  getIt.registerLazySingleton<RepositoryRepo>(
+      () => RepositoryRepoImpl(
+            remoteDataSource: getIt<RepositoryRemoteDataSource>(),
+          ));
+
+          getIt.registerLazySingleton(() => GetRepositoriesUseCase(
+        getIt<RepositoryRepo>(),
+      ));
+
+  getIt.registerLazySingleton(() => GetRepositoryUseCase(
+        getIt<RepositoryRepo>(),
+      ));
+
+        getIt.registerFactory<RepositoriesSearchBloc>(() => RepositoriesSearchBloc(
+        getRepositoriesUseCase: getIt<GetRepositoriesUseCase>(),
+      ));
+  getIt.registerFactory<RepositoryDetailsBloc>(() => RepositoryDetailsBloc(
+        getRepositoryUseCase: getIt<GetRepositoryUseCase>(),
+      ));
 }
