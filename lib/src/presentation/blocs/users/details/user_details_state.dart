@@ -17,7 +17,7 @@ final class UserDetailsSuccess extends UserDetailsState {
 
   const UserDetailsSuccess({
     required this.user,
-    required this.repositories,
+    this.repositories,
   });
 }
 
