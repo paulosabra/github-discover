@@ -11,7 +11,7 @@ class UserModel extends Equatable {
   @JsonKey(name: 'id')
   final int? id;
   @JsonKey(name: 'node_id')
-  final int? nodeId;
+  final String? nodeId;
   @JsonKey(name: 'avatar_url')
   final String? avatarUrl;
   @JsonKey(name: 'gravatar_id')
@@ -41,7 +41,7 @@ class UserModel extends Equatable {
   @JsonKey(name: 'type')
   final String? type;
   @JsonKey(name: 'site_admin')
-  final String? siteAdmin;
+  final bool? siteAdmin;
   @JsonKey(name: 'name')
   final String? name;
   @JsonKey(name: 'company')
@@ -112,23 +112,23 @@ class UserModel extends Equatable {
   Map<String, dynamic> toJson() => _$UserModelToJson(this);
 
   User toEntity() => User(
-        id: id,
-        login: login,
-        avatarUrl: avatarUrl,
-        htmlUrl: htmlUrl,
-        name: name,
-        company: company,
-        blog: blog,
-        location: location,
-        bio: bio,
-        twitterUsername: twitterUsername,
-        publicRepos: publicRepos,
-        publicGists: publicGists,
-        followers: followers,
-        following: following,
-        createdAt: createdAt,
-        updatedAt: updatedAt
-      );
+      id: id,
+      login: login,
+      avatarUrl: avatarUrl,
+      htmlUrl: htmlUrl,
+      name: name,
+      company: company,
+      blog: blog,
+      location: location,
+      bio: bio,
+      twitterUsername: twitterUsername,
+      publicRepos: publicRepos,
+      publicGists: publicGists,
+      followers: followers,
+      following: following,
+      siteAdmin: siteAdmin,
+      createdAt: createdAt,
+      updatedAt: updatedAt);
 
   @override
   List<Object?> get props {
