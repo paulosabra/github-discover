@@ -38,6 +38,6 @@
   "licenseLabel": "Licença:",
   "visibilityLabel": "Visibilidade:",
   "userSearchNavigationItem": "User Search",
-  "emptySearchResultText": "Sua pesquisa não correspondeu a nenhum código",
+  "emptySearchResultText": "Sua pesquisa não correspondeu a nenhum resultado",
   "nullText": "-"
 }
