@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:github_discover/src/config/environment/env.dart';
-import 'package:github_discover/src/data/models/Repository_model.dart';
+import 'package:github_discover/src/data/models/repository_model.dart';
 import 'package:github_discover/src/data/utils/endpoints.dart';
 import 'package:github_discover/src/data/utils/exception.dart';
 
@@ -21,18 +21,20 @@ class RepositoryRemoteDataSourceImpl implements RepositoryRemoteDataSource {
     String searchArgQuery =
         (searchArg != null && searchArg.isNotEmpty) ? '?q=$searchArg' : '';
 
+
     try {
       Response response = await dio
-          .get('${Env.baseUrl}${Endpoint.searchRepositories}$searchArgQuery');
+          .get('${Env.baseUrl}${Endpoint.searchRepositories}$searchArg');
 
       if (response.statusCode == HttpStatus.ok) {
-        var responseData = response.data;
-        var repoItems = responseData["entries"];
+        List<RepositoryModel> repositories = List.empty(growable: true);
+        Map data = response.data;
+        List items = data["items"];
+        for (int i = 0; i < items.length; i++) {
+            repositories.add(RepositoryModel.fromJson(items[i]));
+        }
 
-        var repoCollection =
-            repoItems.map((item) => RepositoryModel.fromJson(item)).toList();
-
-        return repoCollection;
+        return repositories;
       } else {
         throw ServerException();
       }
