@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:github_discover/src/config/injection.dart';
 import 'package:github_discover/src/constants/assets.dart';
 import 'package:github_discover/src/domain/entities/skill.dart';
 import 'package:github_discover/src/presentation/blocs/profile/profile_bloc.dart';

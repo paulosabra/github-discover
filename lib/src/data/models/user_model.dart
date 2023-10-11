@@ -1,9 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:github_discover/src/domain/entities/user.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:equatable/equatable.dart';
-import 'package:github_discover/src/domain/entities/repository.dart';
-import 'package:json_annotation/json_annotation.dart';
 
 part 'user_model.g.dart';
 
@@ -19,25 +16,25 @@ class UserModel extends Equatable {
   final String? htmlUrl;
   @JsonKey(name: 'name')
   final String? name;
-@JsonKey(name: 'company')
+  @JsonKey(name: 'company')
   final String? company;
-@JsonKey(name: 'blog')
+  @JsonKey(name: 'blog')
   final String? blog;
-@JsonKey(name: 'location')
+  @JsonKey(name: 'location')
   final String? location;
-@JsonKey(name: 'bio')
+  @JsonKey(name: 'bio')
   final String? bio;
-@JsonKey(name: 'twitterUsername')
+  @JsonKey(name: 'twitterUsername')
   final String? twitterUsername;
-@JsonKey(name: 'publicRepos')
+  @JsonKey(name: 'publicRepos')
   final int? publicRepos;
-@JsonKey(name: 'publicGists')
+  @JsonKey(name: 'publicGists')
   final int? publicGists;
-@JsonKey(name: 'followers')
+  @JsonKey(name: 'followers')
   final int? followers;
-@JsonKey(name: 'following')
+  @JsonKey(name: 'following')
   final int? following;
-@JsonKey(name: 'createdAt')
+  @JsonKey(name: 'createdAt')
   final String? createdAt;
   @JsonKey(name: 'updatedAt')
   final String? updatedAt;
@@ -67,21 +64,21 @@ class UserModel extends Equatable {
   Map<String, dynamic> toJson() => _$UserModelToJson(this);
 
   User toEntity() => User(
-        id:id ,
+        id: id,
         login: login,
         avatarUrl: avatarUrl,
         htmlUrl: htmlUrl,
         name: name,
         company: company,
-        blog:blog ,
+        blog: blog,
         location: location,
-        bio:bio ,
-        twitterUsername:twitterUsername ,
+        bio: bio,
+        twitterUsername: twitterUsername,
         publicRepos: publicRepos,
         publicGists: publicGists,
         followers: followers,
-        following:following ,
-        createdAt:createdAt ,
+        following: following,
+        createdAt: createdAt,
         updatedAt: updatedAt,
       );
 

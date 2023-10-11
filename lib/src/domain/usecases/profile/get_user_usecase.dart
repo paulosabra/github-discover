@@ -8,8 +8,7 @@ class GetUserUseCase {
 
   GetUserUseCase(this.user);
 
-  Future<Either<Failure, List<User>>> execute({String? search}) async {
-   
-    return await user.getUsers();
+  Future<Either<Failure, User>> execute(String fullname, {String? search}) async {
+    return await user.getUser(fullname);
   }
 }
