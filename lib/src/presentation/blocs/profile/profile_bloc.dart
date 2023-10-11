@@ -79,7 +79,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       skillDeleteUseCase.execute(event.id!);
       add(ProfileInitalEvent());
     } catch (error) {
-      emit(const ProfileErrorState(message: 'Hive Error'));
+      emit(const ProfileErrorState(message: 'Error Hive'));
     }
   }
 
@@ -91,7 +91,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       skillUpdateUseCase.execute(event.skill);
       add(ProfileInitalEvent());
     } catch (error) {
-      emit(const ProfileErrorState(message: 'Hive Error'));
+      emit(const ProfileErrorState(message: 'Error Hive'));
     }
   }
 }
