@@ -8,7 +8,7 @@ class GetRepositoryUseCase {
 
   GetRepositoryUseCase(this.repository);
 
-  Future<Either<Failure, Repository>> execute() async {
+  Future<Either<Failure, Repository>> execute(String name) async {
     return await repository.getRepository();
   }
 }

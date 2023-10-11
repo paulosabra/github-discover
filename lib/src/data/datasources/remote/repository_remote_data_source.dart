@@ -8,6 +8,7 @@ import 'package:github_discover/src/data/utils/exception.dart';
 
 abstract class RepositoryRemoteDataSource {
   Future<RepositoryModel> getRepository();
+  Future<List<RepositoryModel>> getRepositories({String? searchArg});
 }
 
 class RepositoryRemoteDataSourceImpl implements RepositoryRemoteDataSource {
@@ -18,12 +19,37 @@ class RepositoryRemoteDataSourceImpl implements RepositoryRemoteDataSource {
   @override
   Future<RepositoryModel> getRepository() async {
     final response = await dio.get(
-      '${Env.baseUrl}${Endpoint.profile}',
+      '${Env.baseUrl}${Endpoint.repository}',
     );
 
     if (response.statusCode == HttpStatus.ok) {
       return RepositoryModel.fromJson(response.data);
     } else {
+      throw ServerException();
+    }
+  }
+
+  @override
+  Future<List<RepositoryModel>> getRepositories({String? searchArg}) async {
+    String searchArgQuery =
+        (searchArg != null && searchArg.isNotEmpty) ? '?q=$searchArg' : '';
+
+    try {
+      Response response = await dio
+          .get('${Env.baseUrl}${Endpoint.searchRepositories}$searchArgQuery');
+
+      if (response.statusCode == HttpStatus.ok) {
+        var responseData = response.data;
+        var repoItems = responseData["entries"];
+
+        var repoCollection =
+            repoItems.map((item) => RepositoryModel.fromJson(item)).toList();
+
+        return repoCollection;
+      } else {
+        throw ServerException();
+      }
+    } on DioException {
       throw ServerException();
     }
   }
