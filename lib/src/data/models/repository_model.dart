@@ -1,8 +1,10 @@
 import 'package:equatable/equatable.dart';
-import 'package:github_discover/src/domain/entities/license.dart';
-import 'package:github_discover/src/domain/entities/owner.dart';
+import 'package:github_discover/src/data/models/license_model.dart';
+import 'package:github_discover/src/data/models/owner_model.dart';
 import 'package:github_discover/src/domain/entities/repository.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+part 'repository_model.g.dart';
 
 @JsonSerializable()
 class RepositoryModel extends Equatable {
@@ -10,16 +12,16 @@ class RepositoryModel extends Equatable {
   final int? id;
   @JsonKey(name: 'name')
   final String? name;
-  @JsonKey(name: 'full_name')
+  @JsonKey(name: 'fullName')
   final String? fullName;
   @JsonKey(name: 'private')
   final bool? private;
   @JsonKey(name: 'owner')
-  final Owner? owner;
+  final OwnerModel? owner;
   @JsonKey(name: 'html_url')
   final String? htmlUrl;
   @JsonKey(name: 'license')
-  final License? license;
+  final LicenseModel? license;
   @JsonKey(name: 'language')
   final String? language;
   @JsonKey(name: 'description')
@@ -32,7 +34,7 @@ class RepositoryModel extends Equatable {
   final int? stargazersCount;
   @JsonKey(name: 'forks_count')
   final int? forksCount;
-  @JsonKey(name: 'watchers_count')
+  @JsonKey(name: 'subscribers_count')
   final int? subscribersCount;
   @JsonKey(name: 'created_at')
   final String? createdAt;
@@ -42,23 +44,23 @@ class RepositoryModel extends Equatable {
   final String? pushedAt;
 
   const RepositoryModel({
-    required this.id,
-    required this.name,
-    required this.fullName,
-    required this.private,
-    required this.owner,
-    required this.htmlUrl,
-    required this.license,
-    required this.language,
-    required this.description,
-    required this.visibility,
-    required this.fork,
-    required this.forksCount,
-    required this.stargazersCount,
-    required this.subscribersCount,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.pushedAt,
+    this.id,
+    this.name,
+    this.fullName,
+    this.private,
+    this.owner,
+    this.htmlUrl,
+    this.license,
+    this.language,
+    this.description,
+    this.visibility,
+    this.fork,
+    this.forksCount,
+    this.stargazersCount,
+    this.subscribersCount,
+    this.createdAt,
+    this.updatedAt,
+    this.pushedAt,
   });
 
   factory RepositoryModel.fromJson(Map<String, dynamic> json) =>
@@ -67,44 +69,45 @@ class RepositoryModel extends Equatable {
   Map<String, dynamic> toJson() => _$RepositoryModelToJson(this);
 
   Repository toEntity() => Repository(
-      id: id,
-      name: name,
-      fullName: fullName,
-      private: private,
-      owner: owner,
-      htmlUrl: htmlUrl,
-      license: license,
-      language: language,
-      description: description,
-      visibility: visibility,
-      fork: fork,
-      forksCount: forksCount,
-      stargazersCount: stargazersCount,
-      subscribersCount: subscribersCount,
-      createdAt: createdAt,
-      updatedAt: updatedAt,
-      pushedAt: pushedAt);
+        id: id,
+        name: name,
+        fullName: fullName,
+        private: private,
+        owner: owner?.toEntity(),
+        htmlUrl: htmlUrl,
+        license: license?.toEntity(),
+        language: language,
+        description: description,
+        visibility: visibility,
+        fork: fork,
+        stargazersCount: stargazersCount,
+        forksCount: forksCount,
+        subscribersCount: subscribersCount,
+        createdAt: createdAt,
+        updatedAt: updatedAt,
+        pushedAt: pushedAt,
+      );
 
   @override
-  List<Object?> get props => [
-        id,
-        name,
-        fullName,
-        private,
-        owner,
-        htmlUrl,
-        license,
-        language,
-        description,
-        visibility,
-        fork,
-        stargazersCount,
-        forksCount,
-        subscribersCount,
-        createdAt,
-        updatedAt,
-        pushedAt,
-      ];
+  List<Object?> get props {
+    return [
+      id,
+      name,
+      fullName,
+      private,
+      owner,
+      htmlUrl,
+      license,
+      language,
+      description,
+      visibility,
+      fork,
+      stargazersCount,
+      forksCount,
+      subscribersCount,
+      createdAt,
+      updatedAt,
+      pushedAt
+    ];
+  }
 }
-
-typedef Repositories = List<RepositoryModel>;

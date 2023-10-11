@@ -7,9 +7,7 @@ import 'package:github_discover/src/data/utils/endpoints.dart';
 import 'package:github_discover/src/data/utils/exception.dart';
 
 abstract class RepositoryRemoteDataSource {
-  Future<RepositoryModel> getRepository(String name);
-
-  Future<List<RepositoryModel>> getRepos({String? search});
+  Future<RepositoryModel> getRepository();
 }
 
 class RepositoryRemoteDataSourceImpl implements RepositoryRemoteDataSource {
@@ -18,11 +16,8 @@ class RepositoryRemoteDataSourceImpl implements RepositoryRemoteDataSource {
   RepositoryRemoteDataSourceImpl(this.dio);
 
   @override
-  Future<List<RepositoryModel>> getRepos({String? search}) async {}
-
-  @override
-  Future<RepositoryModel> getRepository(String name) async {
-       final response = await dio.get(
+  Future<RepositoryModel> getRepository() async {
+    final response = await dio.get(
       '${Env.baseUrl}${Endpoint.profile}',
     );
 
