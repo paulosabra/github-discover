@@ -21,17 +21,16 @@ class RepositoryRemoteDataSourceImpl implements RepositoryRemoteDataSource {
     String searchArgQuery =
         (searchArg != null && searchArg.isNotEmpty) ? '?q=$searchArg' : '';
 
-
     try {
       Response response = await dio
-          .get('${Env.baseUrl}${Endpoint.searchRepositories}$searchArg');
+          .get('${Env.baseUrl}${Endpoint.searchRepositories}$searchArgQuery');
 
       if (response.statusCode == HttpStatus.ok) {
         List<RepositoryModel> repositories = List.empty(growable: true);
         Map data = response.data;
         List items = data["items"];
         for (int i = 0; i < items.length; i++) {
-            repositories.add(RepositoryModel.fromJson(items[i]));
+          repositories.add(RepositoryModel.fromJson(items[i]));
         }
 
         return repositories;
