@@ -22,7 +22,7 @@ class RepositoriesSearchScreen extends StatefulWidget {
 class _RepositoriesSearchScreenState extends State<RepositoriesSearchScreen> {
   final RepositoriesSearchBloc _bloc = getIt.get<RepositoriesSearchBloc>();
 
-  Repositories repositories = [];
+  RepositoriesModel repositories = [];
 
   @override
   Widget build(BuildContext context) {

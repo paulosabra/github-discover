@@ -63,4 +63,4 @@ class Repository extends Equatable {
       ];
 }
 
-typedef Repositories = List<Repository>;
+typedef RepositoriesModel = List<Repository>;
