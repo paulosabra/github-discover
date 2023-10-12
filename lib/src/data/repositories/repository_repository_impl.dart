@@ -17,52 +17,22 @@ class RepositoryRepositoryImpl implements RepositoryRepository {
     required this.remoteDataSource,
   });
 
-  // @override
-  // Future<Either<Failure, Profile>> getProfile() async {
-  //   try {
-  //     final result = await remoteDataSource.getProfile();
-  //     return Right(result.toEntity());
-  //   } on ServerException {
-  //     return const Left(ServerFailure('Server Exception'));
-  //   } on SocketException {
-  //     return const Left(ConnectionFailure('Falha na conexão com a rede'));
-  //   }
-  // }
-
-  // @override
-  // Future<Skills> getSkillList() async {
-  //   final result = await localDataSource.getSkillList();
-  //   return result.map((item) => item.toEntity()).toList();
-  // }
-
-  // @override
-  // Future<void> addSkill(Skill skill) {
-  //   return localDataSource.saveSkill(SkillModel.fromEntity(skill));
-  // }
-
-  // @override
-  // Future<void> deleteSkill(int id) {
-  //   return localDataSource.deleteSkill(id);
-  // }
-
-  // @override
-  // Future<void> updateSkill(Skill skill) {
-  //   return localDataSource.updateSkill(
-  //     skill.id!,
-  //     SkillModel.fromEntity(skill),
-  //   );
-  // }
-
   @override
-  Future<Repositories> getRepositoriesList() async {
-    final result = await localDataSource.getRepositoriesList();
-    return result.map((item) => item.toEntity()).toList();
+  Future<Either<Failure, Repositories>> getRepositoriesList(String search) async {
+    final result = await remoteDataSource.getRepositories(searchArg: search);
+    try {
+      return Right(result.map((item) => item.toEntity()).toList());
+    } on ServerException {
+      return const Left(ServerFailure('Server Exception'));
+    } on SocketException {
+      return const Left(ConnectionFailure('Falha na conexão com a rede'));
+    }
   }
 
   @override
-  Future<Either<Failure, Repository>> getRepository() async {
+  Future<Either<Failure, Repository>> getRepository(String name) async {
     try {
-      final result = await remoteDataSource.getRepository();
+      final result = await remoteDataSource.getRepository(name);
       return Right(result.toEntity());
     } on ServerException {
       return const Left(ServerFailure('Server Exception'));

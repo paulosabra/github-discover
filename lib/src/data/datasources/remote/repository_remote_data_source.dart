@@ -7,7 +7,7 @@ import 'package:github_discover/src/data/utils/endpoints.dart';
 import 'package:github_discover/src/data/utils/exception.dart';
 
 abstract class RepositoryRemoteDataSource {
-  Future<RepositoryModel> getRepository();
+  Future<RepositoryModel> getRepository(String name);
   Future<List<RepositoryModel>> getRepositories({String? searchArg});
 }
 
@@ -17,9 +17,9 @@ class RepositoryRemoteDataSourceImpl implements RepositoryRemoteDataSource {
   RepositoryRemoteDataSourceImpl(this.dio);
 
   @override
-  Future<RepositoryModel> getRepository() async {
+  Future<RepositoryModel> getRepository(String fullName) async {
     final response = await dio.get(
-      '${Env.baseUrl}${Endpoint.repository}',
+      '${Env.baseUrl}${Endpoint.repository}$fullName',
     );
 
     if (response.statusCode == HttpStatus.ok) {

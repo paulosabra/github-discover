@@ -41,6 +41,26 @@ class Repository extends Equatable {
     required this.pushedAt,
   });
 
+  Repository toEntity() => Repository(
+        id: id,
+        name: name,
+        fullName: fullName,
+        htmlUrl: htmlUrl,
+        private: private,
+        owner: owner,
+        license: license,
+        language: language,
+        description: description,
+        visibility: visibility,
+        fork: fork,
+        forksCount: forksCount,
+        createdAt: createdAt,
+        updatedAt: updatedAt,
+        stargazersCount: stargazersCount,
+        subscribersCount: subscribersCount,
+        pushedAt: pushedAt
+      );
+
   @override
   List<Object?> get props => [
         id,

@@ -21,6 +21,8 @@ import 'package:github_discover/src/presentation/blocs/repositories/search/repos
 import 'package:github_discover/src/presentation/blocs/users/details/user_details_bloc.dart';
 import 'package:github_discover/src/presentation/blocs/users/search/users_search_bloc.dart';
 
+import '../data/repositories/repository_repository_impl.dart';
+
 final GetIt getIt = GetIt.instance;
 
 void startModules() {
@@ -48,6 +50,11 @@ void startModules() {
         localDataSource: getIt<ProfileLocalDataSource>(),
         remoteDataSource: getIt<ProfileRemoteDataSource>(),
       ));
+
+  getIt.registerLazySingleton<RepositoryRepository>(() =>
+      RepositoryRepositoryImpl(
+          localDataSource: getIt<RepositoryLocalDataSource>(),
+          remoteDataSource: getIt<RepositoryRemoteDataSource>()));
 
   // UseCases
   getIt.registerLazySingleton(() => GetProfileUseCase(
@@ -80,7 +87,8 @@ void startModules() {
         skillDeleteUseCase: getIt<SkillDeleteUseCase>(),
         skillUpdateUseCase: getIt<SkillUpdateUseCase>(),
       ));
-  getIt.registerFactory<RepositoriesSearchBloc>(() => RepositoriesSearchBloc());
+  getIt.registerFactory<RepositoriesSearchBloc>(() => RepositoriesSearchBloc(
+      getRepositoriesUseCase: getIt<GetRepositoriesUseCase>()));
   getIt.registerFactory<RepositoryDetailsBloc>(() => RepositoryDetailsBloc());
   getIt.registerFactory<UsersSearchBloc>(() => UsersSearchBloc());
   getIt.registerFactory<UserDetailsBloc>(() => UserDetailsBloc());
