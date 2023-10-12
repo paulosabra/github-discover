@@ -1,7 +1,7 @@
 import 'package:github_discover/src/data/models/repository_model.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-const String _RepositoryBox = 'RepositoryBox';
+const String _repositoryBox = 'RepositoryBox';
 
 abstract class RepositoryLocalDataSource {
   Future<List<RepositoryModel>> getRepositoriesList();
@@ -14,7 +14,7 @@ class RepositoryLocalDataSourceImpl implements RepositoryLocalDataSource {
 
   @override
   Future<List<RepositoryModel>> getRepositoriesList() async {
-    final box = await hive.openBox(_RepositoryBox);
+    final box = await hive.openBox(_repositoryBox);
     return box.values
         .map((repository) => RepositoryModel(
               id: repository.id,
