@@ -4,66 +4,69 @@ import 'package:github_discover/src/config/injection.dart';
 import 'package:github_discover/src/config/routes.dart';
 import 'package:github_discover/src/constants/assets.dart';
 import 'package:github_discover/src/domain/entities/repository.dart';
-import 'package:github_discover/src/presentation/blocs/repositories/details/repository_details_bloc.dart';
+import 'package:github_discover/src/domain/entities/user.dart';
+import 'package:github_discover/src/presentation/blocs/users/details/user_details_bloc.dart';
 import 'package:github_discover/src/presentation/components/empty_state.dart';
 import 'package:github_discover/src/presentation/components/loader.dart';
-import 'package:github_discover/src/presentation/pages/repositories/details/repository_details_page.dart';
+import 'package:github_discover/src/presentation/pages/users/details/user_details_page.dart';
 import 'package:go_router/go_router.dart';
 
-class RepositoryDetailsScreen extends StatefulWidget {
-  final String? fullName;
+class UserDetailsScreen extends StatefulWidget {
+  final String? login;
 
-  const RepositoryDetailsScreen({
+  const UserDetailsScreen({
     super.key,
-    this.fullName,
+    required this.login,
   });
 
   @override
-  State<RepositoryDetailsScreen> createState() =>
-      _RepositoryDetailsScreenState();
+  State<UserDetailsScreen> createState() => UserDetailsScreenState();
 }
 
-class _RepositoryDetailsScreenState extends State<RepositoryDetailsScreen> {
-  final RepositoryDetailsBloc _bloc = getIt.get<RepositoryDetailsBloc>();
+class UserDetailsScreenState extends State<UserDetailsScreen> {
+  final UserDetailsBloc _bloc = getIt.get<UserDetailsBloc>();
 
-  Repository? repository;
+  User? user;
+  Repositories repositories = [];
 
   @override
   void initState() {
     super.initState();
-    _bloc.add(RepositoryDetailLoadedEvent(fullName: widget.fullName));
+    _bloc.add(UserDetailLoadedEvent(fullName: widget.login));
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => _bloc,
-      child: BlocConsumer<RepositoryDetailsBloc, RepositoryDetailsState>(
+      child: BlocConsumer<UserDetailsBloc, UserDetailsState>(
         builder: (context, state) {
-          if (state is RepositoryDetailsLoading) {
+          if (state is UserDetailsLoading) {
             return const CustomLoader();
           }
 
-          if (state is RepositoryDetailsError) {
+          if (state is UserDetailsError) {
             return CustomEmptyState(
               iconPath: Asset.stopIcon,
               description: state.message ?? '',
             );
           }
 
-          return RepositoryDetailsPage(
-            repository: repository,
+          return UserDetailsPage(
+            user: user,
+            repositories: repositories,
             backButtonPressed: () {
               context.pushReplacementNamed(
                 AppRoute.home.name,
-                extra: 1,
+                extra: 2,
               );
             },
           );
         },
         listener: (context, state) {
-          if (state is RepositoryDetailsSuccess) {
-            repository = state.repository;
+          if (state is UserDetailsSuccess) {
+            user = state.user;
+            repositories = state.repositories ?? [];
           }
         },
       ),
