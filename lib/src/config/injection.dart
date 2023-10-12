@@ -13,8 +13,8 @@ import 'package:github_discover/src/domain/usecases/profile/get_skills_usecase.d
 import 'package:github_discover/src/domain/usecases/profile/skill_add_usecase.dart';
 import 'package:github_discover/src/domain/usecases/profile/skill_delete_usecase.dart';
 import 'package:github_discover/src/domain/usecases/profile/skill_updated_usecase.dart';
-import 'package:github_discover/src/domain/usecases/user/get_user_usecase.dart';
-import 'package:github_discover/src/domain/usecases/user/get_users_usecase.dart';
+import 'package:github_discover/src/domain/usecases/profile/user/get_user_usecase.dart';
+import 'package:github_discover/src/domain/usecases/profile/user/get_users_usecase.dart';
 import 'package:github_discover/src/presentation/blocs/profile/profile_bloc.dart';
 import 'package:github_discover/src/presentation/blocs/repositories/details/repository_details_bloc.dart';
 import 'package:github_discover/src/presentation/blocs/repositories/search/repositories_search_bloc.dart';

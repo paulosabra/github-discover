@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:github_discover/src/domain/entities/user.dart';
 import 'package:github_discover/src/domain/entities/repository.dart';
-import 'package:github_discover/src/domain/usecases/user/get_user_usecase.dart';
+import 'package:github_discover/src/domain/usecases/profile/user/get_user_usecase.dart';
 
 part 'user_details_event.dart';
 part 'user_details_state.dart';

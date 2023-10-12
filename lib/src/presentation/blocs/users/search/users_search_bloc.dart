@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:github_discover/src/domain/entities/user.dart';
-import 'package:github_discover/src/domain/usecases/user/get_users_usecase.dart';
+import 'package:github_discover/src/domain/usecases/profile/user/get_users_usecase.dart';
 
 part 'users_search_event.dart';
 part 'users_search_state.dart';
