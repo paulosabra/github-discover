@@ -15,8 +15,9 @@ class User extends Equatable {
   final int? publicGists;
   final int? followers;
   final int? following;
-  final String? createdAt;
-  final String? updatedAt;
+  final bool? siteAdmin;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
 
   const User({
     required this.id,
@@ -33,6 +34,7 @@ class User extends Equatable {
     required this.publicGists,
     required this.followers,
     required this.following,
+    required this.siteAdmin,
     required this.createdAt,
     required this.updatedAt,
   });
@@ -53,6 +55,7 @@ class User extends Equatable {
         publicGists,
         followers,
         following,
+        siteAdmin,
         createdAt,
         updatedAt,
       ];
