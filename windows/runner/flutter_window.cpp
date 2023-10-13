@@ -29,8 +29,9 @@ bool FlutterWindow::OnCreate() {
 
   flutter_controller_->engine()->SetNextFrameCallback([&]() {
     this->Show();
-  });
-
+  }); 
+  
+  flutter_controller_->ForceRedraw()
   return true;
 }
 
