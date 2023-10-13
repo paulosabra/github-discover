@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
-import 'package:github_discover/src/data/datasources/local/repository_local_data_source.dart';
 import 'package:github_discover/src/data/datasources/remote/repository_remote_data_source.dart';
 import 'package:github_discover/src/data/utils/exception.dart';
 import 'package:github_discover/src/data/utils/failure.dart';
@@ -9,16 +8,15 @@ import 'package:github_discover/src/domain/entities/repository.dart';
 import 'package:github_discover/src/domain/repositories/repository_repository.dart';
 
 class RepositoryRepositoryImpl implements RepositoryRepository {
-  final RepositoryLocalDataSource localDataSource;
   final RepositoryRemoteDataSource remoteDataSource;
 
   RepositoryRepositoryImpl({
-    required this.localDataSource,
     required this.remoteDataSource,
   });
 
   @override
-  Future<Either<Failure, Repositories>> getRepositoriesList(String search) async {
+  Future<Either<Failure, List<Repository>>> getRepositoriesList(
+      {String? search}) async {
     final result = await remoteDataSource.getRepositories(searchArg: search);
     try {
       return Right(result.map((item) => item.toEntity()).toList());

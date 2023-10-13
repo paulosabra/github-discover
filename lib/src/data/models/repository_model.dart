@@ -12,7 +12,7 @@ class RepositoryModel extends Equatable {
   final int? id;
   @JsonKey(name: 'name')
   final String? name;
-  @JsonKey(name: 'fullName')
+  @JsonKey(name: 'full_name')
   final String? fullName;
   @JsonKey(name: 'private')
   final bool? private;
@@ -34,7 +34,7 @@ class RepositoryModel extends Equatable {
   final int? stargazersCount;
   @JsonKey(name: 'forks_count')
   final int? forksCount;
-  @JsonKey(name: 'subscribers_count')
+  @JsonKey(name: 'watchers_count')
   final int? subscribersCount;
   @JsonKey(name: 'created_at')
   final String? createdAt;
@@ -80,8 +80,8 @@ class RepositoryModel extends Equatable {
         description: description,
         visibility: visibility,
         fork: fork,
-        stargazersCount: stargazersCount,
         forksCount: forksCount,
+        stargazersCount: stargazersCount,
         subscribersCount: subscribersCount,
         createdAt: createdAt,
         updatedAt: updatedAt,
@@ -107,7 +107,7 @@ class RepositoryModel extends Equatable {
       subscribersCount,
       createdAt,
       updatedAt,
-      pushedAt
+      pushedAt,
     ];
   }
 }

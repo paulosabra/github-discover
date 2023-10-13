@@ -31,21 +31,21 @@ class RepositoryRemoteDataSourceImpl implements RepositoryRemoteDataSource {
 
   @override
   Future<List<RepositoryModel>> getRepositories({String? searchArg}) async {
-    String searchArgQuery =
-        (searchArg != null && searchArg.isNotEmpty) ? '?q=$searchArg' : '';
+    String enteredValue =
+        searchArg != null && searchArg.isNotEmpty ? '?q=$searchArg' : '';
 
     try {
       Response response = await dio
-          .get('${Env.baseUrl}${Endpoint.searchRepositories}$searchArgQuery');
+          .get('${Env.baseUrl}${Endpoint.searchRepositories}$enteredValue');
 
       if (response.statusCode == HttpStatus.ok) {
-        var responseData = response.data;
-        var repoItems = responseData["entries"];
-
-        var repoCollection =
-            repoItems.map((item) => RepositoryModel.fromJson(item)).toList();
-
-        return repoCollection;
+        List<RepositoryModel> repositoriesList = List.empty(growable: true);
+        Map data = response.data;
+        List items = data["items"];
+        for (var element in items) {
+          repositoriesList.add(RepositoryModel.fromJson(element));
+        }
+        return repositoriesList;
       } else {
         throw ServerException();
       }

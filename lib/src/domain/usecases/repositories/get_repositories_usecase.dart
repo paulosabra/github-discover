@@ -8,7 +8,7 @@ class GetRepositoriesUseCase {
 
   GetRepositoriesUseCase(this.repository);
 
-  Future<Either<Failure, Repositories>> execute(String search) async {
-    return await repository.getRepositoriesList(search);
+  Future<Either<Failure, List<Repository>>> execute({String? search}) async {
+    return await repository.getRepositoriesList(search: search);
   }
 }

@@ -4,5 +4,5 @@ import 'package:github_discover/src/domain/entities/repository.dart';
 
 abstract class RepositoryRepository {
   Future<Either<Failure, Repository>> getRepository(String name);
-  Future<Either<Failure, Repositories>> getRepositoriesList(String search);
+  Future<Either<Failure, List<Repository>>>  getRepositoriesList({String? search});
 }

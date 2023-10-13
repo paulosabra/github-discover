@@ -9,7 +9,6 @@ part 'repositories_search_state.dart';
 class RepositoriesSearchBloc
     extends Bloc<RepositoriesSearchEvent, RepositoriesSearchState> {
   final GetRepositoriesUseCase getRepositoriesUseCase;
-
   RepositoriesSearchBloc({required this.getRepositoriesUseCase})
       : super(RepositoriesSearchInitial()) {
     on<SearchRepositoriesEvent>(_onSearchRepositoriesEvent);
@@ -19,10 +18,10 @@ class RepositoriesSearchBloc
     SearchRepositoriesEvent event,
     Emitter emit,
   ) async {
-    emit(const RepositoriesSearchSuccess());
-    final repositoryResult =
-        await getRepositoriesUseCase.execute(event.search ?? '');
-    repositoryResult.fold(
+    emit(RepositoriesSearchLoading());
+
+    final result = await getRepositoriesUseCase.execute(search: event.search);
+    result.fold(
       (failure) {
         emit(RepositoriesSearchError(
           message: failure.message,
