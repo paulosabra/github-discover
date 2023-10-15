@@ -1,5 +1,6 @@
 import 'package:github_discover/src/presentation/pages/home/home_page.dart';
 import 'package:github_discover/src/presentation/pages/profile/profile/profile_screen.dart';
+import 'package:github_discover/src/presentation/pages/repositories/details/repository_details_screen.dart';
 import 'package:github_discover/src/presentation/pages/repositories/search/repositories_search_screen.dart';
 import 'package:github_discover/src/presentation/pages/users/details/user_details_screen.dart';
 import 'package:github_discover/src/presentation/pages/users/search/users_search_screen.dart';
