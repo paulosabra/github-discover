@@ -5,12 +5,13 @@ import 'package:github_discover/src/data/datasources/local/profile_local_data_so
 import 'package:github_discover/src/data/datasources/remote/profile_remote_data_source.dart';
 import 'package:github_discover/src/data/datasources/remote/user_remote_data_source.dart';
 import 'package:github_discover/src/data/repositories/profile_repository_impl.dart';
+import 'package:github_discover/src/data/repositories/user_repository.dart';
 import 'package:github_discover/src/data/repositories/user_repository_impl.dart';
 import 'package:github_discover/src/domain/repositories/profile_repository.dart';
-import 'package:github_discover/src/domain/repositories/user_repository.dart';
 import 'package:github_discover/src/domain/usecases/profile/get_profile_usecase.dart';
 import 'package:github_discover/src/domain/usecases/profile/get_skills_usecase.dart';
 import 'package:github_discover/src/domain/usecases/profile/get_user_usecase.dart';
+import 'package:github_discover/src/domain/usecases/profile/get_users_usecase.dart';
 import 'package:github_discover/src/domain/usecases/profile/skill_add_usecase.dart';
 import 'package:github_discover/src/domain/usecases/profile/skill_delete_usecase.dart';
 import 'package:github_discover/src/domain/usecases/profile/skill_updated_usecase.dart';
@@ -19,6 +20,7 @@ import 'package:github_discover/src/presentation/blocs/repositories/details/repo
 import 'package:github_discover/src/presentation/blocs/repositories/search/repositories_search_bloc.dart';
 import 'package:github_discover/src/presentation/blocs/users/details/user_details_bloc.dart';
 import 'package:github_discover/src/presentation/blocs/users/search/users_search_bloc.dart';
+
 final GetIt getIt = GetIt.instance;
 void startModules() {
   final dio = Dio();
@@ -40,10 +42,9 @@ void startModules() {
         localDataSource: getIt<ProfileLocalDataSource>(),
         remoteDataSource: getIt<ProfileRemoteDataSource>(),
       ));
-  getIt.registerLazySingleton<UserRepository>(
-      () => UserRepositoryImpl(
-            remoteDataSource: getIt<UserRemoteDataSource>(),
-          ));
+  getIt.registerLazySingleton<UserRepository>(() => UserRepositoryImpl(
+        remoteDataSource: getIt<UserRemoteDataSource>(),
+      ));
 
   // UseCases
   getIt.registerLazySingleton(() => GetProfileUseCase(
@@ -64,6 +65,9 @@ void startModules() {
   getIt.registerLazySingleton(() => GetUserUseCase(
         getIt<UserRepository>(),
       ));
+  getIt.registerLazySingleton(() => GetUsersUseCase(
+        getIt<UserRepository>(),
+      ));
 
   // Blocs
   getIt.registerFactory<ProfileBloc>(() => ProfileBloc(
@@ -78,4 +82,6 @@ void startModules() {
       ));
   getIt.registerFactory<RepositoriesSearchBloc>(() => RepositoriesSearchBloc());
   getIt.registerFactory<RepositoryDetailsBloc>(() => RepositoryDetailsBloc());
+  getIt.registerFactory<UsersSearchBloc>(
+      () => UsersSearchBloc(getUsersUseCase: getIt<GetUsersUseCase>()));
 }

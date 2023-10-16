@@ -2,11 +2,10 @@ import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:github_discover/src/data/datasources/remote/user_remote_data_source.dart';
+import 'package:github_discover/src/data/repositories/user_repository.dart';
 import 'package:github_discover/src/data/utils/exception.dart';
 import 'package:github_discover/src/data/utils/failure.dart';
 import 'package:github_discover/src/domain/entities/user.dart';
-import 'package:github_discover/src/domain/repositories/user_repository.dart';
-
 
 class UserRepositoryImpl implements UserRepository {
   final UserRemoteDataSource remoteDataSource;

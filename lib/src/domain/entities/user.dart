@@ -56,7 +56,6 @@ class User extends Equatable {
         createdAt,
         updatedAt,
       ];
-
 }
 
 typedef Users = List<User>;

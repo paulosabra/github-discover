@@ -24,8 +24,8 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
     }
 
     try {
-      Response response = await dio
-          .get('${Env.baseUrl}${Endpoint.searchUsers}$queryParam');
+      Response response =
+          await dio.get('${Env.baseUrl}${Endpoint.searchUsers}$queryParam');
 
       if (response.statusCode == HttpStatus.ok) {
         List<UserModel> users = List.empty(growable: true);
