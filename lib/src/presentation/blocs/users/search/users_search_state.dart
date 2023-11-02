@@ -1,5 +1,6 @@
 part of 'users_search_bloc.dart';
 
+
 sealed class UsersSearchState extends Equatable {
   const UsersSearchState();
 
